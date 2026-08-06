@@ -36,6 +36,9 @@ canvas,
 svg {
   display: block;
   max-width: 100%;
+  /* Required: Astro's <Image> emits width/height attributes, and without this
+     a CSS width override stretches the image vertically. */
+  height: auto;
 }
 
 input,
@@ -106,7 +109,7 @@ samp {
   padding-block: var(--space-2xl);
 }
 
-/* Alternating band, so long pages don't read as one flat sheet */
+/* Alternating band, so long pages don't read as one flat sheet. */
 .section--band {
   background: var(--canvas-deep);
   border-block: 1px solid var(--hairline);
@@ -165,7 +168,7 @@ samp {
   color: var(--accent);
 }
 
-/* Solid green fill — the one loud element per view */
+/* Solid green fill: the one loud element per view. */
 .button--primary {
   border-color: var(--accent);
   background: var(--accent);

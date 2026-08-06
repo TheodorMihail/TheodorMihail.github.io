@@ -1,6 +1,6 @@
 # Editing site content
 
-Everything below is data, not markup — none of it needs component changes.
+Everything below is data, not markup, so none of it needs component changes.
 
 ## Identity, stats and contact links
 
@@ -18,8 +18,8 @@ company: Studio Name
 role: Senior Unity Engineer
 start: Jan 2024          # display strings, not dates
 end: Present             # "Present" renders the green Current badge
-location: City, Country — Remote
-product: Game Name — what it is    # optional, shown in italics
+location: City, Country (Remote)
+product: Game Name, what it is    # optional, shown in italics
 tech: [Unity, 'C#', Netcode]       # quote anything with a #
 order: 1
 ---
@@ -32,15 +32,15 @@ To add a role: create the file, set `order`, and bump the `order` of everything 
 
 ## Shipped titles (the work grid)
 
-`src/data/titles.ts` — one object per title. `highlight: true` renders a full card;
+`src/data/titles.ts`: one object per title. `highlight: true` renders a full card;
 `highlight: false` drops it into the compact "Also shipped" line at the bottom of the section.
 
-`note` renders as a green badge on the card art — use it sparingly, for a genuine headline
+`note` renders as a green badge on the card art. Use it sparingly, for a genuine headline
 figure like "100M+ downloads".
 
 ### Adding cover art
 
-1. Put the image in `src/assets/titles/` (16:9 crops look best — they're the card's aspect ratio).
+1. Put the image in `src/assets/titles/` (16:9 crops, matching the card's aspect ratio).
 2. Import it at the top of `titles.ts` and set it as `cover`:
 
 ```ts
@@ -63,4 +63,4 @@ Prose lives in `src/components/About.astro` and `src/components/Contact.astro`.
 
 ## Personal projects
 
-Not built yet — see the plan. Will be `src/content/projects/`, one Markdown file per project.
+Not built yet, see the plan. Will be `src/content/projects/`, one Markdown file per project.

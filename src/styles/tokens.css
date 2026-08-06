@@ -2,8 +2,9 @@
    Readability first: a neutral grey-dark canvas (not near-black) so text
    contrast stays high, with green reserved for interaction and emphasis. */
 
+
 :root {
-  /* Surfaces — neutral cool greys, deliberately lighter than a black canvas */
+  /* Surfaces: neutral cool greys, deliberately lighter than a black canvas */
   --canvas: #16191f;
   --canvas-deep: #101318;
   --surface: #1c2029;
@@ -11,12 +12,12 @@
   --hairline: #2c323d;
   --hairline-strong: #3b4351;
 
-  /* Text — near-white body, muted greys still above 7:1 on the canvas */
+  /* Text: near-white body, muted greys still above 7:1 on the canvas */
   --text: #f2f4f8;
   --text-muted: #aab3c0;
   --text-faint: #828c9b;
 
-  /* Accent — green, for links, focus, active and emphasis */
+  /* Accent: green, for links, focus, active and emphasis */
   --accent: #7bd95c;
   --accent-bright: #a0eb88;
   --accent-deep: #4e9e3b;
@@ -37,7 +38,7 @@
   --step-3: clamp(1.95rem, 1.65rem + 1.5vw, 3rem);
   --step-4: clamp(2.6rem, 1.95rem + 3.2vw, 4.75rem);
 
-  /* Measure — keep prose narrow enough to scan */
+  /* Measure: keep prose narrow enough to scan */
   --measure: 68ch;
 
   /* Space */

@@ -1,5 +1,5 @@
 ---
-// Latin subsets only — the site has no non-latin copy.
+// Latin subsets only, since the site has no non-latin copy.
 import '@fontsource-variable/space-grotesk';
 import '@fontsource-variable/inter';
 import '@fontsource/ibm-plex-mono/latin-400.css';
@@ -19,7 +19,7 @@ interface Props {
 
 const { title, description = SITE.description, noindex = false } = Astro.props;
 
-const pageTitle = title ? `${title} — ${SITE.name}` : `${SITE.name} — ${SITE.role}`;
+const pageTitle = title ? `${title} · ${SITE.name}` : `${SITE.name} · ${SITE.role}`;
 const canonical = new URL(Astro.url.pathname, Astro.site).href;
 ---
 

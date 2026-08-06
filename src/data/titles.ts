@@ -8,7 +8,7 @@
 export interface Title {
   name: string;
   studio: string;
-  /** Display string — "2023–2025", "Contract". */
+  /** Display string, e.g. "2023-2025" or "Contract". */
   years: string;
   role: string;
   platforms: string[];
@@ -26,17 +26,17 @@ export const TITLES: Title[] = [
   {
     name: 'Illuvium: Zero',
     studio: 'Illuvium',
-    years: '2023–2025',
+    years: '2023-2025',
     role: 'Technical Lead & Architect',
     platforms: ['PC'],
     blurb:
-      'Multiplayer strategy game taken from greenfield to live release. Server-authoritative client–server architecture, custom tooling and CI/CD, then live ops.',
+      'Multiplayer strategy game taken from greenfield to live release. Server-authoritative client/server architecture, custom tooling and CI/CD, then live ops.',
     highlight: true,
   },
   {
     name: 'Immersed',
     studio: 'Immersed',
-    years: '2022–2023',
+    years: '2022-2023',
     role: 'Senior Unity Architect',
     platforms: ['VR', 'Desktop'],
     blurb:
@@ -46,7 +46,7 @@ export const TITLES: Title[] = [
   {
     name: 'Empire Bingo: Win Real Cash',
     studio: 'Empire Games',
-    years: '2021–2022',
+    years: '2021-2022',
     role: 'Unity Architect',
     platforms: ['Mobile'],
     blurb:
@@ -56,7 +56,7 @@ export const TITLES: Title[] = [
   {
     name: 'Idle Miner Tycoon',
     studio: 'Kolibri Games',
-    years: '2020–2021',
+    years: '2020-2021',
     role: 'Senior Unity Engineer',
     platforms: ['Mobile'],
     blurb:
@@ -67,17 +67,17 @@ export const TITLES: Title[] = [
   {
     name: 'Idle Mail Tycoon',
     studio: 'Kolibri Games',
-    years: '2020–2021',
+    years: '2020-2021',
     role: 'Senior Unity Engineer',
     platforms: ['Mobile'],
     blurb:
-      'Owned end to end from scratch to release — core systems and gameplay. Exceeded company store performance targets by over 20%.',
+      'Owned end to end from scratch to release, covering core systems and gameplay. Exceeded company store performance targets by over 20%.',
     highlight: true,
   },
   {
     name: 'Wahoo RGT',
     studio: 'Road Grand Tours',
-    years: '2019–2020',
+    years: '2019-2020',
     role: 'Senior Unity Engineer',
     platforms: ['Mobile', 'Desktop', 'Apple TV'],
     blurb:
@@ -111,7 +111,7 @@ export const TITLES: Title[] = [
     role: 'Unity Contractor',
     platforms: ['Mobile'],
     blurb:
-      'Embedded in the META team on a live title — UI systems, daily quest flows, menu-layer features and localization.',
+      'Embedded in the META team on a live title, building UI systems, daily quest flows, menu-layer features and localization.',
     highlight: true,
   },
 

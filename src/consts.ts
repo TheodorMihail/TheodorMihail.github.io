@@ -6,14 +6,14 @@ export const SITE = {
   location: 'Romania · Remote',
   url: 'https://theodormihail.github.io',
   description:
-    'Senior Unity engineer and architect with 14 years building mobile, multiplayer, VR and cross-platform games — from 100M+ download live titles to server-authoritative multiplayer.',
+    'Unity developer and architect with 14 years building games across mobile, PC, VR and multiplayer, from scalable architecture and performance work to leading teams on real-time multiplayer titles.',
 } as const;
 
-/** Headline figures. Keep these defensible — they are the first claim a visitor reads. */
+/** Headline figures. Keep these defensible: they are the first claim a visitor reads. */
 export const STATS = [
   { value: '14 yrs', label: 'in Unity & C#' },
-  { value: '13', label: 'titles shipped' },
-  { value: '100M+', label: 'downloads reached' },
+  { value: '13', label: 'titles shipped or contributed to' },
+  { value: '100M+', label: 'downloads across those titles' },
 ] as const;
 
 export const LINKS = {

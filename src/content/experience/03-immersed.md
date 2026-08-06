@@ -2,9 +2,9 @@
 company: Immersed
 role: Senior Unity Architect
 start: Feb 2022
-end: Mar 2023
-location: Austin, Texas — Remote
-product: Immersed — VR collaboration platform
+end: Apr 2023
+location: Austin, Texas (Remote)
+product: 'Immersed, VR collaboration platform'
 tech: [Unity, 'C#', VR, MRTK, 'UDP/TCP', 'Performance profiling']
 order: 3
 ---

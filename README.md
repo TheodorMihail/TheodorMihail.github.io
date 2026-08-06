@@ -1,6 +1,6 @@
 # theodormihail.github.io
 
-Personal portfolio site — experience, personal projects, and (soon) a playable browser build of
+Personal portfolio site covering experience, personal projects, and (soon) a playable browser build of
 [Space Invaders](https://github.com/TheodorMihail/SpaceInvaders).
 
 Live at **https://theodormihail.github.io**
