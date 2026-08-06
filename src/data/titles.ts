@@ -29,8 +29,10 @@ export interface Title {
   blurb: string;
   /** Optional headline figure, e.g. "100M+ downloads". */
   note?: string;
-  /** Store or product page, when one is public. */
+  /** Store or product page, when one is public. Official distribution only. */
   url?: string;
+  /** Set when the title is no longer publicly available, which is why it has no `url`. */
+  status?: string;
   cover?: ImageMetadata;
   /** Full card, or counted into the "+ N more shipped titles" line. */
   highlight: boolean;
@@ -85,6 +87,7 @@ export const TITLES: Title[] = [
   {
     name: "Rubik's Match 3",
     studio: 'Nordlight',
+    status: 'No longer available',
     cover: rubiksMatch3,
     role: 'Senior Unity Engineer',
     platforms: ['Mobile'],
@@ -106,6 +109,7 @@ export const TITLES: Title[] = [
   {
     name: 'Empire Bingo: Win Real Cash',
     studio: 'Empire Games',
+    status: 'No longer available',
     cover: empireBingo,
     role: 'Unity Architect',
     platforms: ['Mobile'],
@@ -116,6 +120,7 @@ export const TITLES: Title[] = [
   {
     name: 'Wahoo RGT',
     studio: 'Road Grand Tours',
+    status: 'Discontinued in 2023',
     cover: wahooRgt,
     role: 'Senior Unity Engineer',
     platforms: ['PC', 'Mobile', 'TVs'],
