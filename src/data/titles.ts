@@ -33,7 +33,7 @@ export const TITLES: Title[] = [
     role: 'Senior Unity Engineer',
     platforms: ['Mobile'],
     blurb:
-      'Live idle title developed alongside a team of 50+ engineers, delivering continuous content updates and tuning to one of the largest player bases in the genre.',
+      'Live title delivering continuous feature implementations, content updates, bug fixes and tuning to one of the largest player bases in the genre.',
     note: '100M+ downloads',
     highlight: true,
   },
@@ -43,7 +43,7 @@ export const TITLES: Title[] = [
     role: 'Senior Unity Engineer',
     platforms: ['Mobile'],
     blurb:
-      'Full ownership from initial development through to release, covering core systems, gameplay and live content tuning. Exceeded company store performance targets by over 20%.',
+      'Full ownership from initial development through to release, covering core systems, gameplay and live content tuning, followed by ongoing live operations with feature flags, phased rollouts and A/B testing. Exceeded company store performance targets by over 20%.',
     highlight: true,
   },
   {
@@ -52,7 +52,7 @@ export const TITLES: Title[] = [
     role: 'Technical Lead & Architect',
     platforms: ['PC', 'Mobile'],
     blurb:
-      'Real-time multiplayer strategy title developed from initial concept through to live release. Server-authoritative client/server architecture ensuring determinism and security, supported by custom tooling and CI/CD, followed by ongoing live operations with feature flags, phased rollouts and A/B testing.',
+      'Real-time multiplayer strategy title developed from initial concept through to live release. Server-authoritative client/server architecture ensuring determinism and security, supported by custom tooling and CI/CD.',
     highlight: true,
   },
   {
@@ -70,7 +70,7 @@ export const TITLES: Title[] = [
     role: 'Senior Unity Engineer',
     platforms: ['Mobile'],
     blurb:
-      'Embedded within the META team on a live title, implementing UI systems, daily quest flows, menu-layer features and a localization system, delivered as ongoing content updates.',
+      'Joined the META team during development and saw the title through to launch, implementing UI systems, daily quest flows, menu-layer features and a localization system, then continuing on post-release content updates.',
     highlight: true,
   },
   {

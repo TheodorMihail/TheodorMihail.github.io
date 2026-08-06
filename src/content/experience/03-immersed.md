@@ -9,4 +9,4 @@ tech: [MRTK, 'UDP/TCP', 'Performance profiling']
 order: 3
 ---
 
-Engaged to raise the platform's performance and stability ceiling. Worked across the networking layer, rendering pipeline and VR interaction stack, in collaboration with the computer vision team on gesture capture.
+Senior architecture role covering the platform's performance, stability and interaction quality. Worked across the networking layer, rendering pipeline and VR interaction stack, in collaboration with the computer vision team on gesture capture.

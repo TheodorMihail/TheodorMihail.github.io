@@ -9,4 +9,4 @@ tech: ['Server authority', 'CI/CD', 'Live ops']
 order: 2
 ---
 
-Technical ownership of both the project and the team from the outset. Established the engineering standards and code review process, and was responsible for technical interviewing, mentoring and performance reviews alongside hands-on development.
+Held technical ownership of the project and its engineering team across the full engagement. Established the engineering standards and code review process, and was responsible for technical interviewing, mentoring and performance reviews alongside hands-on development.

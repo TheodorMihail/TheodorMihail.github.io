@@ -9,4 +9,4 @@ tech: [Zenject, 'Unity IAP', SOLID]
 order: 4
 ---
 
-Sole architect on a greenfield product in a regulated sector, where security and auditability informed every design decision. Delivered ahead of roadmap, alongside the internal tooling used by the content team.
+Owned the technical architecture of a new real-money platform, from initial system design through to delivery. Operating in a regulated sector meant security and auditability governed the technical decisions, and the role extended to the internal tooling used by the content team.

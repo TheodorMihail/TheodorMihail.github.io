@@ -8,4 +8,4 @@ tech: [Mirror, Docker, Multiplayer]
 order: 1
 ---
 
-Independent contracting entity for embedded engagements with international studios. 10+ clients to date, joining established teams in a senior capacity with ownership of a system or feature area.
+Independent contracting entity for embedded engagements with international studios, 10+ clients to date. Engagements are typically at senior or architect level, taking responsibility for a defined system, feature area or technical foundation within the client team.
