@@ -7,6 +7,13 @@ interface Props {
 }
 
 const { title } = Astro.props;
+
+/**
+ * Mobile screenshots are portrait and would be cropped to a thin strip by the
+ * 16:9 card. Those are letterboxed over a blurred copy of themselves instead.
+ */
+const isPortrait = title.cover ? title.cover.width < title.cover.height : false;
+
 /** Initials for the fallback tile shown until cover art exists. */
 const initials = title.name
   .replace(/[^A-Za-z0-9 ]/g, '')
@@ -18,10 +25,24 @@ const initials = title.name
 ---
 
 <article class="card">
-  <div class="card__art">
+  <div class:list={['card__art', isPortrait && 'card__art--portrait']}>
+    {
+      title.cover && isPortrait && (
+        <Image
+          class="card__backdrop"
+          src={title.cover}
+          alt=""
+          aria-hidden="true"
+          widths={[320]}
+          sizes="340px"
+          loading="lazy"
+        />
+      )
+    }
     {
       title.cover ? (
         <Image
+          class="card__image"
           src={title.cover}
           alt={`${title.name} screenshot`}
           widths={[320, 640]}
@@ -85,10 +106,28 @@ const initials = title.name
     overflow: hidden;
   }
 
-  .card__art :global(img) {
+  .card__art :global(.card__image) {
     width: 100%;
     height: 100%;
     object-fit: cover;
+  }
+
+  /* Portrait source: show it whole, centred, over a blurred fill. */
+  .card__art--portrait :global(.card__image) {
+    position: relative;
+    width: auto;
+    max-width: 100%;
+    object-fit: contain;
+  }
+
+  .card__art :global(.card__backdrop) {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: blur(18px) brightness(0.45) saturate(1.1);
+    transform: scale(1.15);
   }
 
   .card__fallback {

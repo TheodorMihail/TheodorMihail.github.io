@@ -9,8 +9,15 @@
  * top of this file, and set it as `cover`. Cards render a styled fallback
  * while `cover` is undefined, so entries never need to wait on artwork.
  */
+import empireBingo from '../assets/titles/empire-bingo.png';
+import idleMailTycoon from '../assets/titles/idle-mail-tycoon.png';
+import idleMinerTycoon from '../assets/titles/idle-miner-tycoon.png';
 import illuviumZero from '../assets/titles/illuvium-zero.png';
+import immersed from '../assets/titles/immersed.png';
+import ordinem from '../assets/titles/ordinem.png';
 import rubiksMatch3 from '../assets/titles/rubiks-match3.png';
+import starvinMartian from '../assets/titles/starvin-martian.png';
+import wahooRgt from '../assets/titles/wahoo-rgt.png';
 
 export type Platform = 'PC' | 'Mobile' | 'TVs' | 'VR';
 
@@ -33,6 +40,7 @@ export const TITLES: Title[] = [
   {
     name: 'Idle Miner Tycoon',
     studio: 'Kolibri Games',
+    cover: idleMinerTycoon,
     role: 'Senior Unity Engineer',
     platforms: ['Mobile'],
     blurb:
@@ -43,6 +51,7 @@ export const TITLES: Title[] = [
   {
     name: 'Idle Mail Tycoon',
     studio: 'Kolibri Games',
+    cover: idleMailTycoon,
     role: 'Senior Unity Engineer',
     platforms: ['Mobile'],
     blurb:
@@ -62,6 +71,7 @@ export const TITLES: Title[] = [
   {
     name: 'Ordinem',
     studio: 'Playa3ull Games',
+    cover: ordinem,
     role: 'Senior Unity Engineer',
     platforms: ['PC'],
     blurb:
@@ -81,6 +91,7 @@ export const TITLES: Title[] = [
   {
     name: 'Immersed',
     studio: 'Immersed',
+    cover: immersed,
     role: 'Senior Unity Architect',
     platforms: ['VR', 'PC', 'Mobile'],
     blurb:
@@ -90,6 +101,7 @@ export const TITLES: Title[] = [
   {
     name: 'Empire Bingo: Win Real Cash',
     studio: 'Empire Games',
+    cover: empireBingo,
     role: 'Unity Architect',
     platforms: ['Mobile'],
     blurb:
@@ -99,6 +111,7 @@ export const TITLES: Title[] = [
   {
     name: 'Wahoo RGT',
     studio: 'Road Grand Tours',
+    cover: wahooRgt,
     role: 'Senior Unity Engineer',
     platforms: ['PC', 'Mobile', 'TVs'],
     blurb:
@@ -108,6 +121,7 @@ export const TITLES: Title[] = [
   {
     name: "Starvin' Martian",
     studio: 'Playa3ull Games',
+    cover: starvinMartian,
     role: 'Senior Unity Engineer',
     platforms: ['PC'],
     blurb:
