@@ -40,6 +40,7 @@ export const TITLES: Title[] = [
   {
     name: 'Idle Miner Tycoon',
     studio: 'Kolibri Games',
+    url: 'https://play.google.com/store/apps/details?id=com.fluffyfairygames.idleminertycoon',
     cover: idleMinerTycoon,
     role: 'Senior Unity Engineer',
     platforms: ['Mobile'],
@@ -51,6 +52,7 @@ export const TITLES: Title[] = [
   {
     name: 'Idle Mail Tycoon',
     studio: 'Kolibri Games',
+    url: 'https://apps.apple.com/us/app/idle-mail-tycoon/id1562670118',
     cover: idleMailTycoon,
     role: 'Senior Unity Engineer',
     platforms: ['Mobile'],
@@ -61,6 +63,7 @@ export const TITLES: Title[] = [
   {
     name: 'Illuvium: Zero',
     studio: 'Illuvium',
+    url: 'https://play.google.com/store/apps/details?id=io.illuvium.zero',
     cover: illuviumZero,
     role: 'Technical Lead & Architect',
     platforms: ['PC', 'Mobile'],
@@ -71,6 +74,7 @@ export const TITLES: Title[] = [
   {
     name: 'Ordinem',
     studio: 'Playa3ull Games',
+    url: 'https://playa3ull.games/games/ordinem',
     cover: ordinem,
     role: 'Senior Unity Engineer',
     platforms: ['PC'],
@@ -91,6 +95,7 @@ export const TITLES: Title[] = [
   {
     name: 'Immersed',
     studio: 'Immersed',
+    url: 'https://immersed.com/',
     cover: immersed,
     role: 'Senior Unity Architect',
     platforms: ['VR', 'PC', 'Mobile'],
@@ -121,6 +126,7 @@ export const TITLES: Title[] = [
   {
     name: "Starvin' Martian",
     studio: 'Playa3ull Games',
+    url: 'https://playa3ull.games/games/starvin-martian',
     cover: starvinMartian,
     role: 'Senior Unity Engineer',
     platforms: ['PC'],

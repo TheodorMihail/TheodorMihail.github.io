@@ -43,8 +43,24 @@ const initials = title.name
     <h3 class="card__name">
       {
         title.url ? (
-          <a href={title.url} rel="noopener">
+          <a href={title.url} target="_blank" rel="noopener noreferrer">
             {title.name}
+            <svg
+              class="card__external"
+              viewBox="0 0 16 16"
+              width="12"
+              height="12"
+              aria-hidden="true"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.8"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M6 3h7v7" />
+              <path d="M13 3 4 12" />
+            </svg>
+            <span class="visually-hidden">(opens in a new tab)</span>
           </a>
         ) : (
           title.name
@@ -128,12 +144,26 @@ const initials = title.name
   }
 
   .card__name a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35em;
     text-decoration: none;
     color: var(--text);
   }
 
   .card__name a:hover {
     color: var(--accent);
+  }
+
+  .card__external {
+    flex-shrink: 0;
+    color: var(--text-faint);
+    transition: color var(--transition), transform var(--transition);
+  }
+
+  .card__name a:hover .card__external {
+    color: var(--accent);
+    transform: translate(1px, -1px);
   }
 
   .card__studio {
