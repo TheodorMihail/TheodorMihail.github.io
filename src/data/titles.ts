@@ -29,7 +29,7 @@ export interface Title {
   blurb: string;
   /** Optional headline figure, e.g. "100M+ downloads". */
   note?: string;
-  /** Store or product page, when one is public. Official distribution only. */
+  /** Store, product or archive page for the title. */
   url?: string;
   /** Set when the title is no longer publicly available, which is why it has no `url`. */
   status?: string;
@@ -87,6 +87,7 @@ export const TITLES: Title[] = [
   {
     name: "Rubik's Match 3",
     studio: 'Nordlight',
+    url: 'https://rubik-s-match-3d-puzzle.en.aptoide.com/app',
     status: 'No longer available',
     cover: rubiksMatch3,
     role: 'Senior Unity Engineer',
@@ -109,6 +110,7 @@ export const TITLES: Title[] = [
   {
     name: 'Empire Bingo: Win Real Cash',
     studio: 'Empire Games',
+    url: 'https://empire-bingo-win-real-cash-ios.soft112.com/',
     status: 'No longer available',
     cover: empireBingo,
     role: 'Unity Architect',
@@ -120,6 +122,7 @@ export const TITLES: Title[] = [
   {
     name: 'Wahoo RGT',
     studio: 'Road Grand Tours',
+    url: 'https://rgt-cycling.en.aptoide.com/app',
     status: 'Discontinued in 2023',
     cover: wahooRgt,
     role: 'Senior Unity Engineer',
