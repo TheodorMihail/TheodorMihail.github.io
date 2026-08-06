@@ -7,8 +7,6 @@ import { SITE, STATS } from '../consts';
   <Starfield />
 
   <div class="container hero__inner">
-    <p class="kicker hero__eyebrow">{SITE.location}</p>
-
     <h1 class="hero__name">{SITE.name}</h1>
 
     <p class="hero__role">{SITE.role}</p>
@@ -47,11 +45,6 @@ import { SITE, STATS } from '../consts';
     position: relative;
     z-index: 1;
     max-width: 52rem;
-  }
-
-  .hero__eyebrow {
-    color: var(--accent);
-    margin-bottom: var(--space-md);
   }
 
   .hero__name {
