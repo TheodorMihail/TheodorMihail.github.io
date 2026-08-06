@@ -1,41 +1,44 @@
-/* Design tokens. Dark arcade / space.
-   The aesthetic is the frame — screenshots and copy are the content. */
+/* Design tokens.
+   Readability first: a neutral grey-dark canvas (not near-black) so text
+   contrast stays high, with green reserved for interaction and emphasis. */
 
 :root {
-  /* Surfaces */
-  --canvas: #05060b;
-  --surface: #0e121c;
-  --surface-raised: #141926;
-  --hairline: #1e2433;
-  --hairline-strong: #2b3345;
+  /* Surfaces — neutral cool greys, deliberately lighter than a black canvas */
+  --canvas: #16191f;
+  --canvas-deep: #101318;
+  --surface: #1c2029;
+  --surface-raised: #232833;
+  --hairline: #2c323d;
+  --hairline-strong: #3b4351;
 
-  /* Text */
-  --text: #e8ecf5;
-  --text-muted: #8a93a8;
-  --text-faint: #5b6478;
+  /* Text — near-white body, muted greys still above 7:1 on the canvas */
+  --text: #f2f4f8;
+  --text-muted: #aab3c0;
+  --text-faint: #828c9b;
 
-  /* Accent — one neon, used for links, focus, active states */
-  --accent: #4de3d3;
-  --accent-bright: #7ff0e4;
-  --accent-glow: rgb(77 227 211 / 0.16);
-  --accent-wash: rgb(77 227 211 / 0.07);
-
-  /* Held in reserve for one or two genuine "live" highlights */
-  --hot: #ff4d8d;
-  --hot-glow: rgb(255 77 141 / 0.18);
+  /* Accent — green, for links, focus, active and emphasis */
+  --accent: #7bd95c;
+  --accent-bright: #a0eb88;
+  --accent-deep: #4e9e3b;
+  --accent-glow: rgb(123 217 92 / 0.18);
+  --accent-wash: rgb(123 217 92 / 0.09);
+  /* Text colour that sits on a solid --accent fill */
+  --on-accent: #10160f;
 
   /* Type */
   --font-display: 'Space Grotesk Variable', system-ui, sans-serif;
   --font-body: 'Inter Variable', system-ui, sans-serif;
   --font-mono: 'IBM Plex Mono', ui-monospace, 'SFMono-Regular', monospace;
-  --font-pixel: 'Press Start 2P', var(--font-mono);
 
-  --step--1: clamp(0.78rem, 0.76rem + 0.1vw, 0.84rem);
-  --step-0: clamp(0.95rem, 0.92rem + 0.15vw, 1.05rem);
-  --step-1: clamp(1.15rem, 1.08rem + 0.35vw, 1.4rem);
-  --step-2: clamp(1.45rem, 1.3rem + 0.75vw, 2rem);
-  --step-3: clamp(1.9rem, 1.6rem + 1.5vw, 3rem);
-  --step-4: clamp(2.6rem, 1.9rem + 3.4vw, 5rem);
+  --step--1: clamp(0.82rem, 0.79rem + 0.12vw, 0.88rem);
+  --step-0: clamp(1rem, 0.97rem + 0.16vw, 1.09rem);
+  --step-1: clamp(1.18rem, 1.1rem + 0.36vw, 1.42rem);
+  --step-2: clamp(1.5rem, 1.34rem + 0.78vw, 2.05rem);
+  --step-3: clamp(1.95rem, 1.65rem + 1.5vw, 3rem);
+  --step-4: clamp(2.6rem, 1.95rem + 3.2vw, 4.75rem);
+
+  /* Measure — keep prose narrow enough to scan */
+  --measure: 68ch;
 
   /* Space */
   --space-2xs: 0.25rem;
@@ -54,7 +57,7 @@
   /* Shape + motion */
   --radius-sm: 4px;
   --radius: 8px;
-  --radius-lg: 14px;
+  --radius-lg: 12px;
   --ease: cubic-bezier(0.2, 0.7, 0.3, 1);
   --transition: 180ms var(--ease);
 }

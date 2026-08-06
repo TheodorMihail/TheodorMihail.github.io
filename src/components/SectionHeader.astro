@@ -1,6 +1,6 @@
 ---
 interface Props {
-  /** Two-digit section index, rendered in the pixel face. */
+  /** Two-digit section index, rendered in mono alongside the title. */
   index: string;
   title: string;
   id?: string;
@@ -18,16 +18,15 @@ const { index, title, id } = Astro.props;
 <style>
   .section-header {
     display: flex;
-    align-items: center;
+    align-items: baseline;
     gap: var(--space-md);
     margin-bottom: var(--space-xl);
   }
 
   .section-header__index {
-    font-family: var(--font-pixel);
-    font-size: 0.7rem;
+    font-family: var(--font-mono);
+    font-size: var(--step--1);
     color: var(--accent);
-    line-height: 1;
     flex-shrink: 0;
   }
 
@@ -38,7 +37,8 @@ const { index, title, id } = Astro.props;
 
   .section-header__rule {
     flex: 1;
+    align-self: center;
     height: 1px;
-    background: linear-gradient(to right, var(--hairline-strong), transparent);
+    background: var(--hairline);
   }
 </style>
