@@ -9,6 +9,7 @@ import About from '../components/About.astro';
 import Contact from '../components/Contact.astro';
 import Placeholder from '../components/Placeholder.astro';
 import { TITLES } from '../data/titles';
+import { LINKS } from '../consts';
 
 const highlighted = TITLES.filter((title) => title.highlight);
 const otherCount = TITLES.filter((title) => !title.highlight).length;
@@ -26,10 +27,7 @@ const rendered = await Promise.all(
     <div class="container">
       <SectionHeader index="01" title="Shipped work" />
 
-      <p class="section__lead">
-        Commercial titles I've shipped or contributed to across PC, mobile, TVs and VR, covering
-        real-time and turn-based multiplayer, live operations and platform integration work.
-      </p>
+      <p class="section__lead">Commercial titles I've shipped or contributed to.</p>
 
       <div class="title-grid">
         {highlighted.map((title) => <TitleCard title={title} />)}
@@ -63,7 +61,9 @@ const rendered = await Promise.all(
       </div>
 
       <p class="also">
-        Pre-2016 experience covers junior and mid-level roles, available on request.
+        A summary rather than the full record. Detailed responsibilities per role, and pre-2016
+        junior and mid-level experience, are in my CV. <a href={`mailto:${LINKS.email}`}>Ask me
+        for a copy</a> and I'll send it over.
       </p>
     </div>
   </section>

@@ -3,6 +3,9 @@ import { Image } from 'astro:assets';
 import { SITE } from '../consts';
 
 /**
+ * This section is the one place the full technical range is stated. Keep the
+ * hero and section leads free of capability lists so nothing repeats.
+ *
  * Photo is picked up automatically. Drop a file at `src/assets/profile.jpg`
  * (.jpeg, .png and .webp also work) and it appears; with no file present the
  * text runs full width.
@@ -26,14 +29,22 @@ const photo = Object.values(matches)[0]?.default;
   <div class="about__text">
     <p>
       Hi, I'm Theodor, a Unity developer and architect based in Romania, with 14 years building
-      games across mobile, PC, VR and multiplayer.
+      games across PC, mobile, TVs and VR.
     </p>
 
     <p>
-      My work has run from designing scalable architecture and optimising performance to leading
-      teams on real-time multiplayer titles and contributing to live mobile games past 100 million
-      downloads. I care as much about the codebase as the people building it. Leading a team or
-      embedded as a contributor, I bring the same focus: solid architecture, clear communication,
+      Most of my work sits in the parts of a game players never see. Real-time and turn-based
+      multiplayer, network communication and optimisation, and server-authoritative designs that
+      keep the server the source of truth so clients cannot manipulate outcomes. Around that, system
+      design grounded in established patterns and coding principles, and building, extending or
+      adapting the plugins and frameworks a team ends up depending on.
+    </p>
+
+    <p>
+      I've spent as many years on the operational side: feature flagging, phased rollouts, A/B
+      testing, content updates and tuning. Release day is where the work starts, not where it ends.
+      I care as much about the codebase as the people building it, and whether I'm leading a team or
+      embedded as a contributor, I bring the same focus on solid architecture, clear communication
       and genuine ownership of what ships.
     </p>
 

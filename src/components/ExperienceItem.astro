@@ -137,6 +137,10 @@ const { company, role, start, end, location, product, tech, current = false } = 
     color: var(--text-muted);
   }
 
+  .role__detail :global(p) {
+    max-width: var(--measure);
+  }
+
   .role__detail :global(ul) {
     display: flex;
     flex-direction: column;

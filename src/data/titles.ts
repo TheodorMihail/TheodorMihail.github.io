@@ -59,7 +59,7 @@ export const TITLES: Title[] = [
     role: 'Senior Unity Engineer',
     platforms: ['Mobile'],
     blurb:
-      'Live idle title worked on alongside 50+ engineers, with continuous content updates, A/B tests and phased rollouts behind feature flags.',
+      'Live idle title worked on alongside 50+ engineers, shipping continuous content updates and tuning to one of the largest player bases in the genre.',
     note: '100M+ downloads',
     highlight: true,
   },
