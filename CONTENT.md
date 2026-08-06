@@ -52,7 +52,14 @@ figure like "100M+ downloads".
 
 ### Adding cover art
 
-1. Put the image in `src/assets/titles/` (16:9 crops, matching the card's aspect ratio).
+1. Put the image in `src/assets/titles/`. **Use 16:9 landscape**, ideally 1280x720 or larger, since
+   that is the card's aspect ratio.
+
+   A portrait source still works: the card detects it from the image dimensions at build time and
+   letterboxes it whole over a blurred copy of itself, rather than cropping it to a strip. It looks
+   noticeably weaker than the landscape cards though, so treat it as a fallback rather than a
+   target.
+
 2. Import it at the top of `titles.ts` and set it as `cover`:
 
 ```ts

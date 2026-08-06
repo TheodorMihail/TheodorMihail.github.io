@@ -118,6 +118,8 @@ const initials = title.name
     width: auto;
     max-width: 100%;
     object-fit: contain;
+    border-inline: 1px solid rgb(0 0 0 / 0.35);
+    box-shadow: 0 0 24px rgb(0 0 0 / 0.45);
   }
 
   .card__art :global(.card__backdrop) {
@@ -126,8 +128,9 @@ const initials = title.name
     width: 100%;
     height: 100%;
     object-fit: cover;
-    filter: blur(18px) brightness(0.45) saturate(1.1);
-    transform: scale(1.15);
+    /* Bright enough to read as a deliberate fill rather than empty space. */
+    filter: blur(14px) brightness(0.85) saturate(1.35);
+    transform: scale(1.25);
   }
 
   .card__fallback {
