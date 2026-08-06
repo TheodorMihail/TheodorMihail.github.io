@@ -1,8 +1,23 @@
 ---
+import { getCollection, render } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Hero from '../components/Hero.astro';
 import SectionHeader from '../components/SectionHeader.astro';
+import TitleCard from '../components/TitleCard.astro';
+import ExperienceItem from '../components/ExperienceItem.astro';
+import About from '../components/About.astro';
+import Contact from '../components/Contact.astro';
 import Placeholder from '../components/Placeholder.astro';
+import { TITLES } from '../data/titles';
+import { LINKS } from '../consts';
+
+const highlighted = TITLES.filter((title) => title.highlight);
+const otherCount = TITLES.filter((title) => !title.highlight).length;
+
+const roles = (await getCollection('experience')).sort((a, b) => a.data.order - b.data.order);
+const rendered = await Promise.all(
+  roles.map(async (role) => ({ data: role.data, Content: (await render(role)).Content }))
+);
 ---
 
 <BaseLayout>
@@ -10,32 +25,100 @@ import Placeholder from '../components/Placeholder.astro';
 
   <section class="section" id="work">
     <div class="container">
-      <SectionHeader index="01" title="Selected work" />
-      <Placeholder
-        label="Projects"
-        note="Space Invaders and BaseArchitecture land here, each with its own page."
-      />
+      <SectionHeader index="01" title="Shipped work" />
+
+      <p class="section__lead">Commercial titles I've shipped or contributed to.</p>
+
+      <div class="title-grid">
+        {highlighted.map((title) => <TitleCard title={title} />)}
+      </div>
+
+      <p class="also">+ {otherCount} more shipped titles.</p>
     </div>
   </section>
 
   <section class="section section--band" id="experience">
     <div class="container">
       <SectionHeader index="02" title="Experience" />
-      <Placeholder label="Career timeline" note="Roles, dates and what I built at each." />
+
+      <div class="timeline">
+        {
+          rendered.map(({ data, Content }) => (
+            <ExperienceItem
+              company={data.company}
+              role={data.role}
+              start={data.start}
+              end={data.end}
+              location={data.location}
+              product={data.product}
+              tech={data.tech}
+              current={data.end === 'Present'}
+            >
+              <Content />
+            </ExperienceItem>
+          ))
+        }
+      </div>
+
+      <p class="also">
+        A summary covering the senior level positions. For a detailed breakdown, feel free to{' '}
+        <a href={`mailto:${LINKS.email}`}>request my CV</a>.
+      </p>
     </div>
   </section>
 
-  <section class="section" id="about">
+  <section class="section" id="projects">
     <div class="container">
-      <SectionHeader index="03" title="About" />
-      <Placeholder label="Bio" note="Who I am and the kind of systems I like building." />
+      <SectionHeader index="03" title="Personal projects" />
+
+      <p class="section__lead">
+        Personal work with the source published, where the architecture is visible end to end.
+      </p>
+
+      <Placeholder
+        label="Coming next"
+        note="Space Invaders and BaseArchitecture, each with its own page and a playable build."
+      />
     </div>
   </section>
 
-  <section class="section section--band" id="contact">
+  <section class="section section--band" id="about">
     <div class="container">
-      <SectionHeader index="04" title="Contact" />
-      <Placeholder label="Get in touch" note="Email and social links." />
+      <SectionHeader index="04" title="About" />
+      <About />
+    </div>
+  </section>
+
+  <section class="section" id="contact">
+    <div class="container">
+      <SectionHeader index="05" title="Contact" />
+      <Contact />
     </div>
   </section>
 </BaseLayout>
+
+<style>
+  .section__lead {
+    margin-top: calc(var(--space-xl) * -0.5);
+    margin-bottom: var(--space-lg);
+    color: var(--text-muted);
+  }
+
+  .title-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 17rem), 1fr));
+    gap: var(--space-md);
+  }
+
+  .also {
+    margin-top: var(--space-lg);
+    max-width: var(--measure);
+    font-size: var(--step--1);
+    color: var(--text-faint);
+  }
+
+  .timeline {
+    display: flex;
+    flex-direction: column;
+  }
+</style>
