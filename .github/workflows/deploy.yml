@@ -38,8 +38,3 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
-        with:
-          # Default is 10 minutes. A deploy that sat in deployment_queued past
-          # that limit was killed and cancelled, and re-running against the same
-          # commit then hung the same way, since the deployment id is the SHA.
-          timeout: 1800000
