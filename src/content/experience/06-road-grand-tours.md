@@ -9,4 +9,4 @@ tech: [Networking, Multiplayer, 'Cross-platform']
 order: 6
 ---
 
-Systems and networking engineer on a shipped cross-platform product, working with stakeholders to keep technical decisions aligned with the product roadmap.
+Systems and networking engineer on a shipped cross-platform product, working with stakeholders to align technical decisions with the product roadmap.

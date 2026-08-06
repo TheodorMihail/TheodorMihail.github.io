@@ -8,4 +8,4 @@ tech: [Mirror, Docker, Multiplayer]
 order: 1
 ---
 
-My own contracting entity, used for embedded engagements with international studios. 10+ clients to date, joining established teams as a senior engineer and generally taking a system or feature area end to end.
+Independent contracting entity for embedded engagements with international studios. 10+ clients to date, joining established teams in a senior capacity with ownership of a system or feature area.

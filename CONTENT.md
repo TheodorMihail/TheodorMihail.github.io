@@ -4,8 +4,15 @@ Everything below is data, not markup, so none of it needs component changes.
 
 ## Identity, stats and contact links
 
-`src/consts.ts`. Name, role, tagline, location, meta description, the three hero stat figures,
-and every contact URL.
+`src/consts.ts`. Name, role, platforms, location, hero intro, meta description, the three hero
+stat figures, and every contact URL.
+
+Stat labels are arrays, one string per rendered line, so line breaks are deliberate rather than
+left to the browser:
+
+```ts
+{ value: '13', label: ['titles shipped or', 'contributed to'] }
+```
 
 ## Experience (the career timeline)
 

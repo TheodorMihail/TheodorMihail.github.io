@@ -9,4 +9,4 @@ tech: [Zenject, 'Unity IAP', SOLID]
 order: 4
 ---
 
-Sole architect on a greenfield product in a regulated space, where security and auditability shaped every decision. Delivered ahead of roadmap, and built the internal tooling the content team worked in.
+Sole architect on a greenfield product in a regulated sector, where security and auditability informed every design decision. Delivered ahead of roadmap, alongside the internal tooling used by the content team.

@@ -13,17 +13,21 @@ export const SITE = {
   location: 'Romania · Remote',
   url: 'https://theodormihail.github.io',
   /** Displayed in the hero. Positioning, not a capability list. */
-  intro: 'I design game systems that hold up in production, and lead the teams that ship them.',
+  intro:
+    'Specialising in scalable game architecture, multiplayer systems and engineering leadership.',
   /** Meta description only, never rendered on the page, so keyword density is fine here. */
   description:
     'Senior Unity engineer and architect with 14 years shipping games on PC, mobile, TVs and VR. Real-time and turn-based multiplayer, server-authoritative networking, performance optimisation and live operations.',
 } as const;
 
-/** Headline figures. Keep these defensible: they are the first claim a visitor reads. */
+/**
+ * Headline figures. Keep these defensible: they are the first claim a visitor reads.
+ * `label` is an array so line breaks are explicit rather than left to the browser.
+ */
 export const STATS = [
-  { value: '14 yrs', label: 'in Unity & C#' },
-  { value: '13', label: 'titles shipped or contributed to' },
-  { value: '100M+', label: 'downloads across those titles' },
+  { value: '14 yrs', label: ['in Unity & C#'] },
+  { value: '13', label: ['titles shipped or', 'contributed to'] },
+  { value: '100M+', label: ['downloads across', 'contributed titles'] },
 ] as const;
 
 export const LINKS = {

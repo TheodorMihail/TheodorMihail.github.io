@@ -9,4 +9,4 @@ tech: [Firebase, 'A/B testing', 'Feature flags']
 order: 5
 ---
 
-Feature ownership inside a 50+ engineer live-ops organisation on one title, and end-to-end ownership of a second from scratch through release. Close daily work with product, art and analytics.
+Feature ownership within a 50+ engineer live-operations organisation on one title, and full ownership of a second from initial development through to release. Worked closely with product, art and analytics throughout.

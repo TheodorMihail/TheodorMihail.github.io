@@ -21,7 +21,9 @@ import { SITE, STATS } from '../consts';
         STATS.map((stat) => (
           <li class="stat">
             <span class="stat__value">{stat.value}</span>
-            <span class="stat__label">{stat.label}</span>
+            <span class="stat__label">
+              {stat.label.map((line) => <span class="stat__line">{line}</span>)}
+            </span>
           </li>
         ))
       }
@@ -101,9 +103,17 @@ import { SITE, STATS } from '../consts';
   }
 
   .stat__label {
+    display: flex;
+    flex-direction: column;
+    margin-top: var(--space-2xs);
     font-family: var(--font-mono);
     font-size: var(--step--1);
+    line-height: 1.4;
     color: var(--text-faint);
+  }
+
+  .stat__line {
+    display: block;
   }
 
   .hero__actions {

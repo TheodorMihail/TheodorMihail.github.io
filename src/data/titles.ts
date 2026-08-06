@@ -1,5 +1,6 @@
 /**
- * Shipped commercial titles, newest first.
+ * Shipped commercial titles. Array order is the display order, curated for
+ * impact rather than chronology.
  *
  * `platforms` uses a fixed vocabulary of four values: PC, Mobile, TVs, VR.
  * Never put technologies (multiplayer, networking) in this list.
@@ -27,39 +28,12 @@ export interface Title {
 
 export const TITLES: Title[] = [
   {
-    name: 'Illuvium: Zero',
-    studio: 'Illuvium',
-    role: 'Technical Lead & Architect',
-    platforms: ['PC', 'Mobile'],
-    blurb:
-      'Real-time multiplayer strategy taken from greenfield to live release. Server-authoritative client/server architecture for determinism and security, custom tooling and CI/CD, then live operations with feature flags, phased rollouts and A/B tests.',
-    highlight: true,
-  },
-  {
-    name: 'Immersed',
-    studio: 'Immersed',
-    role: 'Senior Unity Architect',
-    platforms: ['VR', 'PC', 'Mobile'],
-    blurb:
-      'VR collaboration platform. Rebuilt the UDP/TCP network layer for a 90% gain in session stability, and extended the MRTK framework with custom gesture tracking that lifted accuracy by 50%.',
-    highlight: true,
-  },
-  {
-    name: 'Empire Bingo: Win Real Cash',
-    studio: 'Empire Games',
-    role: 'Unity Architect',
-    platforms: ['Mobile'],
-    blurb:
-      'Real-money casino platform architected from scratch around security and modularity. SOLID, MVC, Zenject and state machines throughout, with the Unity IAP plugin handling transactions. MVP landed 30% ahead of schedule.',
-    highlight: true,
-  },
-  {
     name: 'Idle Miner Tycoon',
     studio: 'Kolibri Games',
     role: 'Senior Unity Engineer',
     platforms: ['Mobile'],
     blurb:
-      'Live idle title worked on alongside 50+ engineers, shipping continuous content updates and tuning to one of the largest player bases in the genre.',
+      'Live idle title developed alongside a team of 50+ engineers, delivering continuous content updates and tuning to one of the largest player bases in the genre.',
     note: '100M+ downloads',
     highlight: true,
   },
@@ -69,16 +43,16 @@ export const TITLES: Title[] = [
     role: 'Senior Unity Engineer',
     platforms: ['Mobile'],
     blurb:
-      'Owned end to end from scratch to release, covering core systems, gameplay and live content tuning. Exceeded company store performance targets by over 20%.',
+      'Full ownership from initial development through to release, covering core systems, gameplay and live content tuning. Exceeded company store performance targets by over 20%.',
     highlight: true,
   },
   {
-    name: 'Wahoo RGT',
-    studio: 'Road Grand Tours',
-    role: 'Senior Unity Engineer',
-    platforms: ['PC', 'Mobile', 'TVs'],
+    name: 'Illuvium: Zero',
+    studio: 'Illuvium',
+    role: 'Technical Lead & Architect',
+    platforms: ['PC', 'Mobile'],
     blurb:
-      'Cross-platform cycling simulation. Rewrote the network module for stable real-time online races and events, and optimised UI and gameplay systems across five platforms.',
+      'Real-time multiplayer strategy title developed from initial concept through to live release. Server-authoritative client/server architecture ensuring determinism and security, supported by custom tooling and CI/CD, followed by ongoing live operations with feature flags, phased rollouts and A/B testing.',
     highlight: true,
   },
   {
@@ -87,16 +61,7 @@ export const TITLES: Title[] = [
     role: 'Senior Unity Engineer',
     platforms: ['PC'],
     blurb:
-      'Delivered 200+ card implementations, including base mechanics for a large share of the set, against a three-month deadline.',
-    highlight: true,
-  },
-  {
-    name: "Starvin' Martian",
-    studio: 'Playa3ull Games',
-    role: 'Senior Unity Engineer',
-    platforms: ['PC'],
-    blurb:
-      'Gameplay systems for buildings, upgrades and production, plus the real-time multiplayer foundation on Mirror with on-demand Docker server provisioning and backend-backed session persistence.',
+      'Delivered 200+ card implementations for a turn-based card game, including the base mechanics for a significant portion of the set, within a three-month deadline.',
     highlight: true,
   },
   {
@@ -105,7 +70,43 @@ export const TITLES: Title[] = [
     role: 'Senior Unity Engineer',
     platforms: ['Mobile'],
     blurb:
-      'Embedded in the META team on a live title, building UI systems, daily quest flows, menu-layer features and a localization system, shipped as ongoing content updates.',
+      'Embedded within the META team on a live title, implementing UI systems, daily quest flows, menu-layer features and a localization system, delivered as ongoing content updates.',
+    highlight: true,
+  },
+  {
+    name: 'Immersed',
+    studio: 'Immersed',
+    role: 'Senior Unity Architect',
+    platforms: ['VR', 'PC', 'Mobile'],
+    blurb:
+      'VR collaboration platform. Rebuilt the UDP/TCP network layer, achieving a 90% improvement in session stability, and extended the MRTK framework with custom gesture tracking that improved accuracy by 50%.',
+    highlight: true,
+  },
+  {
+    name: 'Empire Bingo: Win Real Cash',
+    studio: 'Empire Games',
+    role: 'Unity Architect',
+    platforms: ['Mobile'],
+    blurb:
+      'Real-money casino platform architected from the ground up, with security and modularity as the primary constraints. Built on SOLID principles, MVC, Zenject and state machines, with the Unity IAP plugin handling transactions. MVP delivered 30% ahead of schedule.',
+    highlight: true,
+  },
+  {
+    name: 'Wahoo RGT',
+    studio: 'Road Grand Tours',
+    role: 'Senior Unity Engineer',
+    platforms: ['PC', 'Mobile', 'TVs'],
+    blurb:
+      'Cross-platform cycling simulation. Rewrote the network module to support stable real-time online races and events, and optimised UI and gameplay systems across five platforms.',
+    highlight: true,
+  },
+  {
+    name: "Starvin' Martian",
+    studio: 'Playa3ull Games',
+    role: 'Senior Unity Engineer',
+    platforms: ['PC'],
+    blurb:
+      'Gameplay systems covering buildings, upgrades and production, together with the real-time multiplayer foundation built on Mirror, including on-demand Docker server provisioning and backend-backed session persistence.',
     highlight: true,
   },
 
