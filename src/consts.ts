@@ -2,11 +2,11 @@
 export const SITE = {
   name: 'Theodor Mihail Holban',
   role: 'Senior Unity Engineer & Architect',
-  tagline: 'Mobile, multiplayer & live games',
+  tagline: 'Multiplayer, networking & live games',
   location: 'Romania · Remote',
   url: 'https://theodormihail.github.io',
   description:
-    'Unity developer and architect with 14 years building games across mobile, PC, VR and multiplayer, from scalable architecture and performance work to leading teams on real-time multiplayer titles.',
+    'Unity developer and architect with 14 years shipping games on PC, mobile, TVs and VR. Real-time and turn-based multiplayer, server-authoritative networking, performance optimisation and live operations.',
 } as const;
 
 /** Headline figures. Keep these defensible: they are the first claim a visitor reads. */

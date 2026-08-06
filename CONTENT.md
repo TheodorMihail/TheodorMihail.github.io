@@ -33,7 +33,12 @@ To add a role: create the file, set `order`, and bump the `order` of everything 
 ## Shipped titles (the work grid)
 
 `src/data/titles.ts`: one object per title. `highlight: true` renders a full card;
-`highlight: false` drops it into the compact "Also shipped" line at the bottom of the section.
+`highlight: false` only adds to the "+ N more shipped titles" count at the bottom of the section,
+without naming the title.
+
+`platforms` is restricted by the `Platform` type to exactly four values: `PC`, `Mobile`, `TVs`,
+`VR`. Technologies such as multiplayer or networking belong in the `blurb`, never here. TypeScript
+will reject anything outside the four.
 
 `note` renders as a green badge on the card art. Use it sparingly, for a genuine headline
 figure like "100M+ downloads".

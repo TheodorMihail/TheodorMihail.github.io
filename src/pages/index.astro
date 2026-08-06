@@ -11,7 +11,7 @@ import Placeholder from '../components/Placeholder.astro';
 import { TITLES } from '../data/titles';
 
 const highlighted = TITLES.filter((title) => title.highlight);
-const alsoShipped = TITLES.filter((title) => !title.highlight);
+const otherCount = TITLES.filter((title) => !title.highlight).length;
 
 const roles = (await getCollection('experience')).sort((a, b) => a.data.order - b.data.order);
 const rendered = await Promise.all(
@@ -27,16 +27,15 @@ const rendered = await Promise.all(
       <SectionHeader index="01" title="Shipped work" />
 
       <p class="section__lead">
-        Commercial titles I've shipped or contributed to, across mobile, VR, desktop and multiplayer.
+        Commercial titles I've shipped or contributed to across PC, mobile, TVs and VR, covering
+        real-time and turn-based multiplayer, live operations and platform integration work.
       </p>
 
       <div class="title-grid">
         {highlighted.map((title) => <TitleCard title={title} />)}
       </div>
 
-      <p class="also">
-        Also shipped: {alsoShipped.map((title) => title.name).join(', ')}.
-      </p>
+      <p class="also">+ {otherCount} more shipped titles.</p>
     </div>
   </section>
 

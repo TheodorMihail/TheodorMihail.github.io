@@ -10,6 +10,6 @@ order: 4
 ---
 
 - Architected a real-money mobile casino platform from scratch, with security, modularity and scalability as the driving constraints.
-- Designed the codebase around SOLID principles, MVC, Zenject, state machines and event-driven patterns, with Unity IAP integration handling real-money transactions.
+- Designed the codebase around SOLID principles, MVC, Zenject dependency injection, state machines and event-driven patterns, integrating the Unity IAP plugin to handle real-money transactions.
 - Delivered the MVP 30% ahead of schedule and the full product 15% faster than the original roadmap, through workflow optimisation and cross-team alignment.
 - Built internal tooling to speed up content iteration and held release timelines across the full development cycle.
