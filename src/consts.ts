@@ -1,26 +1,31 @@
-/**
- * Single source of truth for site-wide strings and links.
- * Phase 1 values are placeholders — replaced with real copy in Phase 2.
- */
+/** Single source of truth for site-wide strings and links. */
 export const SITE = {
-  name: 'Theodor Mihail',
-  /** Shown under the name in the hero and in the <title> suffix. */
-  role: 'Unity / gameplay engineer',
+  name: 'Theodor Mihail Holban',
+  role: 'Senior Unity Engineer & Architect',
+  tagline: 'Mobile, multiplayer & live games',
+  location: 'Romania · Remote',
   url: 'https://theodormihail.github.io',
   description:
-    'Unity and gameplay engineer building game architecture that scales — clean systems, tested code, shipped projects.',
+    'Senior Unity engineer and architect with 14 years building mobile, multiplayer, VR and cross-platform games — from 100M+ download live titles to server-authoritative multiplayer.',
 } as const;
 
-/** TODO(phase-2): replace with real contact details. */
+/** Headline figures. Keep these defensible — they are the first claim a visitor reads. */
+export const STATS = [
+  { value: '14 yrs', label: 'in Unity & C#' },
+  { value: '13', label: 'titles shipped' },
+  { value: '100M+', label: 'downloads reached' },
+] as const;
+
 export const LINKS = {
+  email: 'holbantheodormihail@gmail.com',
+  linkedin: 'https://www.linkedin.com/in/theodor-mihail-holban',
   github: 'https://github.com/TheodorMihail',
-  linkedin: '',
-  email: '',
 } as const;
 
 export const NAV_ITEMS = [
   { label: 'Work', href: '/#work' },
   { label: 'Experience', href: '/#experience' },
+  { label: 'Projects', href: '/#projects' },
   { label: 'About', href: '/#about' },
   { label: 'Contact', href: '/#contact' },
 ] as const;

@@ -1,0 +1,74 @@
+---
+import { LINKS } from '../consts';
+
+const channels = [
+  { label: 'Email', value: LINKS.email, href: `mailto:${LINKS.email}` },
+  { label: 'LinkedIn', value: 'theodor-mihail-holban', href: LINKS.linkedin },
+  { label: 'GitHub', value: 'TheodorMihail', href: LINKS.github },
+];
+---
+
+<div class="contact">
+  <p class="contact__lead">
+    Open to senior Unity engineering, architecture and technical leadership work. Based in Romania,
+    working remotely.
+  </p>
+
+  <ul class="contact__list">
+    {
+      channels.map((channel) => (
+        <li class="contact__item">
+          <span class="contact__label">{channel.label}</span>
+          <a href={channel.href} rel="noopener">
+            {channel.value}
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+
+  <a class="button button--primary" href={`mailto:${LINKS.email}`}>Send an email</a>
+</div>
+
+<style>
+  .contact {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-lg);
+  }
+
+  .contact__lead {
+    font-size: var(--step-1);
+    color: var(--text-muted);
+  }
+
+  .contact__list {
+    display: grid;
+    gap: var(--space-sm);
+    width: 100%;
+    max-width: 34rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .contact__item {
+    display: grid;
+    grid-template-columns: 6rem 1fr;
+    gap: var(--space-sm);
+    align-items: baseline;
+    padding-bottom: var(--space-sm);
+    border-bottom: 1px solid var(--hairline);
+  }
+
+  .contact__label {
+    font-family: var(--font-mono);
+    font-size: var(--step--1);
+    color: var(--text-faint);
+  }
+
+  .contact__item a {
+    word-break: break-word;
+  }
+</style>

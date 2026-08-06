@@ -1,0 +1,87 @@
+---
+import { Image } from 'astro:assets';
+import { SITE } from '../consts';
+
+/**
+ * Photo is picked up automatically — drop a file at `src/assets/profile.jpg`
+ * (or .png/.webp) and it appears. Absent, the text runs full width.
+ */
+const matches = import.meta.glob<{ default: ImageMetadata }>(
+  '../assets/profile.{jpg,jpeg,png,webp}',
+  { eager: true }
+);
+const photo = Object.values(matches)[0]?.default;
+---
+
+<div class:list={['about', photo && 'about--with-photo']}>
+  {
+    photo && (
+      <div class="about__photo">
+        <Image src={photo} alt={SITE.name} widths={[240, 480]} loading="lazy" />
+      </div>
+    )
+  }
+
+  <div class="about__text">
+    <p>
+      I've spent 14 years building games in Unity — mobile, multiplayer, VR and cross-platform.
+      That's covered live titles past 100 million downloads, a real-money platform where security
+      was the first constraint, a VR collaboration product, and a multiplayer strategy game I led
+      from an empty repository through to live operations.
+    </p>
+
+    <p>
+      What I keep coming back to is architecture — not as a diagram exercise, but as the thing that
+      decides whether a team can still move quickly in month eighteen. Most of my work is building
+      systems that stay extendable under a real production schedule: clear ownership, testable
+      seams, and no clever code that only one person understands.
+    </p>
+
+    <p>
+      I use AI tooling daily — Claude Code and GitHub Copilot — across planning, architecture
+      review, debugging and test generation. It's earned its place most in the planning phase,
+      catching problems in existing code before they reach production.
+    </p>
+
+    <p>
+      The personal projects on this site are those same ideas with the source open. You can read the
+      code rather than take my word for it.
+    </p>
+  </div>
+</div>
+
+<style>
+  .about {
+    display: grid;
+    gap: var(--space-lg);
+  }
+
+  .about--with-photo {
+    grid-template-columns: minmax(0, 14rem) minmax(0, 1fr);
+    align-items: start;
+    gap: var(--space-xl);
+  }
+
+  .about__photo :global(img) {
+    width: 100%;
+    border: 1px solid var(--hairline);
+    border-radius: var(--radius-lg);
+  }
+
+  .about__text {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+    color: var(--text-muted);
+  }
+
+  @media (max-width: 46rem) {
+    .about--with-photo {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    .about__photo {
+      max-width: 11rem;
+    }
+  }
+</style>

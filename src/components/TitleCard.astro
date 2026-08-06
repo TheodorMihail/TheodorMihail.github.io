@@ -1,0 +1,152 @@
+---
+import { Image } from 'astro:assets';
+import type { Title } from '../data/titles';
+
+interface Props {
+  title: Title;
+}
+
+const { title } = Astro.props;
+/** Initials for the fallback tile shown until cover art exists. */
+const initials = title.name
+  .replace(/[^A-Za-z0-9 ]/g, '')
+  .split(/\s+/)
+  .slice(0, 2)
+  .map((word) => word[0])
+  .join('')
+  .toUpperCase();
+---
+
+<article class="card">
+  <div class="card__art">
+    {
+      title.cover ? (
+        <Image src={title.cover} alt={`${title.name} screenshot`} widths={[320, 640]} loading="lazy" />
+      ) : (
+        <span class="card__fallback" aria-hidden="true">
+          {initials}
+        </span>
+      )
+    }
+    {title.note && <span class="card__note">{title.note}</span>}
+  </div>
+
+  <div class="card__body">
+    <h3 class="card__name">
+      {
+        title.url ? (
+          <a href={title.url} rel="noopener">
+            {title.name}
+          </a>
+        ) : (
+          title.name
+        )
+      }
+    </h3>
+
+    <p class="card__meta">{title.studio} · {title.years}</p>
+    <p class="card__role">{title.role}</p>
+    <p class="card__blurb">{title.blurb}</p>
+
+    <p class="card__platforms">{title.platforms.join(' · ')}</p>
+  </div>
+</article>
+
+<style>
+  .card {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--hairline);
+    border-radius: var(--radius-lg);
+    background: var(--surface);
+    overflow: hidden;
+    transition: border-color var(--transition);
+  }
+
+  .card:hover {
+    border-color: var(--hairline-strong);
+  }
+
+  .card__art {
+    position: relative;
+    aspect-ratio: 16 / 9;
+    display: grid;
+    place-items: center;
+    background: var(--canvas-deep);
+    border-bottom: 1px solid var(--hairline);
+    overflow: hidden;
+  }
+
+  .card__art :global(img) {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .card__fallback {
+    font-family: var(--font-display);
+    font-size: 2.25rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    color: var(--hairline-strong);
+  }
+
+  .card__note {
+    position: absolute;
+    top: var(--space-sm);
+    right: var(--space-sm);
+    padding: 0.15rem 0.5rem;
+    border-radius: var(--radius-sm);
+    background: var(--accent);
+    color: var(--on-accent);
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    font-weight: 600;
+  }
+
+  .card__body {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2xs);
+    padding: var(--space-md);
+  }
+
+  .card__name {
+    font-size: var(--step-1);
+  }
+
+  .card__name a {
+    text-decoration: none;
+    color: var(--text);
+  }
+
+  .card__name a:hover {
+    color: var(--accent);
+  }
+
+  .card__meta {
+    font-family: var(--font-mono);
+    font-size: var(--step--1);
+    color: var(--text-faint);
+  }
+
+  .card__role {
+    font-size: var(--step--1);
+    font-weight: 500;
+    color: var(--accent);
+  }
+
+  .card__blurb {
+    margin-top: var(--space-2xs);
+    font-size: var(--step--1);
+    color: var(--text-muted);
+  }
+
+  .card__platforms {
+    margin-top: auto;
+    padding-top: var(--space-sm);
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    color: var(--text-faint);
+  }
+</style>

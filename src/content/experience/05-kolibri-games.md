@@ -1,0 +1,15 @@
+---
+company: Kolibri Games
+role: Senior Unity Engineer
+start: Sep 2020
+end: Jul 2021
+location: Bucharest, Romania
+product: Idle Mail Tycoon & Idle Miner Tycoon — mobile idle games
+tech: [Unity, 'C#', 'Live ops', Firebase, 'A/B testing', Crashlytics]
+order: 5
+---
+
+- Contributed to **Idle Miner Tycoon**, a live mobile title past 100M downloads, working alongside 50+ engineers in a continuous live-ops environment.
+- Took full ownership of **Idle Mail Tycoon** from scratch to release, designing and implementing its core systems and gameplay features. The title exceeded company store performance targets by over 20%.
+- Ran live operations directly: feature flag management, A/B test coordination, Crashlytics monitoring and hotfix delivery.
+- Worked with product, art and analytics on feature rollout, contributing to code review process and workflow improvements.
