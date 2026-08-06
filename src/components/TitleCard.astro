@@ -40,6 +40,8 @@ const initials = title.name
   </div>
 
   <div class="card__body">
+    {title.status && <p class="card__status">{title.status}</p>}
+
     <h3 class="card__name">
       {
         title.url ? (
@@ -67,8 +69,6 @@ const initials = title.name
         )
       }
     </h3>
-
-    {title.status && <p class="card__status">{title.status}</p>}
 
     <p class="card__studio">{title.studio}</p>
     <p class="card__role">{title.role}</p>
@@ -186,7 +186,7 @@ const initials = title.name
     color: var(--text-muted);
   }
 
-  /* Sits directly under the title, so the link's context is immediate. */
+  /* Sits above the title, so the caveat lands before the link. */
   .card__status {
     font-family: var(--font-mono);
     font-size: 0.72rem;

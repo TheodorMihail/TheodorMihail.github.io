@@ -85,6 +85,28 @@ export const TITLES: Title[] = [
     highlight: true,
   },
   {
+    name: 'Immersed',
+    studio: 'Immersed',
+    url: 'https://immersed.com/',
+    cover: immersed,
+    role: 'Senior Unity Architect',
+    platforms: ['VR', 'PC', 'Mobile'],
+    blurb:
+      'VR collaboration platform. Rebuilt the UDP/TCP network layer, achieving a 90% improvement in session stability, and extended the MRTK framework with custom gesture tracking that improved accuracy by 50%.',
+    highlight: true,
+  },
+  {
+    name: "Starvin' Martian",
+    studio: 'Playa3ull Games',
+    url: 'https://playa3ull.games/games/starvin-martian',
+    cover: starvinMartian,
+    role: 'Senior Unity Engineer',
+    platforms: ['PC'],
+    blurb:
+      'Gameplay systems covering buildings, upgrades and production, together with the real-time multiplayer foundation built on Mirror, including on-demand Docker server provisioning and backend-backed session persistence.',
+    highlight: true,
+  },
+  {
     name: "Rubik's Match 3",
     studio: 'Nordlight',
     url: 'https://rubik-s-match-3d-puzzle.en.aptoide.com/app',
@@ -94,17 +116,6 @@ export const TITLES: Title[] = [
     platforms: ['Mobile'],
     blurb:
       'Joined the META team during development and pushed the title through to launch, implementing UI systems, daily quest flows, menu-layer features and a localization system, then continuing on post-release content updates.',
-    highlight: true,
-  },
-  {
-    name: 'Immersed',
-    studio: 'Immersed',
-    url: 'https://immersed.com/',
-    cover: immersed,
-    role: 'Senior Unity Architect',
-    platforms: ['VR', 'PC', 'Mobile'],
-    blurb:
-      'VR collaboration platform. Rebuilt the UDP/TCP network layer, achieving a 90% improvement in session stability, and extended the MRTK framework with custom gesture tracking that improved accuracy by 50%.',
     highlight: true,
   },
   {
@@ -129,17 +140,6 @@ export const TITLES: Title[] = [
     platforms: ['PC', 'Mobile', 'TVs'],
     blurb:
       'Cross-platform cycling simulation. Rewrote the network module to support stable real-time online races and events, and optimised UI and gameplay systems across five platforms.',
-    highlight: true,
-  },
-  {
-    name: "Starvin' Martian",
-    studio: 'Playa3ull Games',
-    url: 'https://playa3ull.games/games/starvin-martian',
-    cover: starvinMartian,
-    role: 'Senior Unity Engineer',
-    platforms: ['PC'],
-    blurb:
-      'Gameplay systems covering buildings, upgrades and production, together with the real-time multiplayer foundation built on Mirror, including on-demand Docker server provisioning and backend-backed session persistence.',
     highlight: true,
   },
 
