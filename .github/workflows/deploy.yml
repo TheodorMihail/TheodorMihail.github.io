@@ -39,8 +39,6 @@ jobs:
         id: deployment
         uses: actions/deploy-pages@v4
         with:
-          # The publish itself lands, but the Pages backend regularly takes
-          # longer than the default 10 minutes to confirm it, so the action
-          # aborts a deploy that already succeeded. Wait longer instead.
-          timeout: 1800000
+          # Pages caps the deploy timeout at 10 min server-side, so it is not
+          # raisable. Only tolerate more status-report errors before aborting.
           error_count: 20
