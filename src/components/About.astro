@@ -21,7 +21,13 @@ const photo = Object.values(matches)[0]?.default;
   {
     photo && (
       <div class="about__photo">
-        <Image src={photo} alt={SITE.name} widths={[240, 480]} loading="lazy" />
+        <Image
+          src={photo}
+          alt={SITE.name}
+          widths={[240, 480]}
+          sizes="(min-width: 46rem) 208px, 160px"
+          loading="lazy"
+        />
       </div>
     )
   }
@@ -33,8 +39,8 @@ const photo = Object.values(matches)[0]?.default;
     </p>
 
     <p>
-      Much of my focus sits with the underlying systems rather than what appears on screen:
-      real-time and turn-based multiplayer, network communication and optimisation, and
+      Much of my focus sits with the underlying systems: real-time and turn-based multiplayer,
+      network communication and optimisation, and
       server-authoritative designs that keep the server the source of truth so clients cannot
       influence outcomes. Alongside that, system design grounded in established patterns and coding
       principles, and the implementation, extension and adaptation of the plugins and frameworks a
@@ -50,15 +56,14 @@ const photo = Object.values(matches)[0]?.default;
     </p>
 
     <p>
-      More recently, AI tools like Claude Code have become a core part of how I work, helping me
-      plan better, catch issues earlier, and think problems through before writing a line of code.
+      AI tools like Claude Code have become a core part of how I work, helping me plan better, catch
+      issues earlier, and think problems through before writing a line of code.
     </p>
 
     <p>
-      Outside of work I've spent more hours than I can count in the game worlds I grew up loving,
-      probably part of why this industry still feels endlessly interesting. Always up for a
-      conversation about game architecture, multiplayer systems, or where AI-assisted development
-      goes next.
+      Outside of work, games remain a long-standing personal interest and a large part of why the
+      industry still holds my attention. I'm always happy to discuss game architecture, multiplayer
+      systems, or where AI-assisted development is heading.
     </p>
   </div>
 </div>

@@ -21,7 +21,13 @@ const initials = title.name
   <div class="card__art">
     {
       title.cover ? (
-        <Image src={title.cover} alt={`${title.name} screenshot`} widths={[320, 640]} loading="lazy" />
+        <Image
+          src={title.cover}
+          alt={`${title.name} screenshot`}
+          widths={[320, 640]}
+          sizes="(min-width: 60rem) 340px, (min-width: 40rem) 45vw, 90vw"
+          loading="lazy"
+        />
       ) : (
         <span class="card__fallback" aria-hidden="true">
           {initials}

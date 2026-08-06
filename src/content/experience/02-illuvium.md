@@ -5,7 +5,7 @@ start: Apr 2023
 end: Feb 2025
 location: Sydney, Australia (Remote)
 product: 'Illuvium: Zero'
-tech: ['Server authority', 'CI/CD', 'Live ops']
+tech: [Multiplayer, 'Server Authority', 'CI/CD', 'Live Ops', 'Team Leadership']
 order: 2
 ---
 

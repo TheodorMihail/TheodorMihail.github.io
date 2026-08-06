@@ -1,10 +1,10 @@
 ---
 company: MKTH Studio SRL
-role: Senior Unity Contractor
+role: Unity Senior Engineer And Technical Lead Contractor
 start: Apr 2016
 end: Present
 location: Romania
-tech: [Mirror, Docker, Multiplayer]
+tech: ['Team Leadership', 'Technical Leadership']
 order: 1
 ---
 

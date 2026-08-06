@@ -9,6 +9,9 @@
  * top of this file, and set it as `cover`. Cards render a styled fallback
  * while `cover` is undefined, so entries never need to wait on artwork.
  */
+import illuviumZero from '../assets/titles/illuvium-zero.png';
+import rubiksMatch3 from '../assets/titles/rubiks-match3.png';
+
 export type Platform = 'PC' | 'Mobile' | 'TVs' | 'VR';
 
 export interface Title {
@@ -49,6 +52,7 @@ export const TITLES: Title[] = [
   {
     name: 'Illuvium: Zero',
     studio: 'Illuvium',
+    cover: illuviumZero,
     role: 'Technical Lead & Architect',
     platforms: ['PC', 'Mobile'],
     blurb:
@@ -67,10 +71,11 @@ export const TITLES: Title[] = [
   {
     name: "Rubik's Match 3",
     studio: 'Nordlight',
+    cover: rubiksMatch3,
     role: 'Senior Unity Engineer',
     platforms: ['Mobile'],
     blurb:
-      'Joined the META team during development and saw the title through to launch, implementing UI systems, daily quest flows, menu-layer features and a localization system, then continuing on post-release content updates.',
+      'Joined the META team during development and pushed the title through to launch, implementing UI systems, daily quest flows, menu-layer features and a localization system, then continuing on post-release content updates.',
     highlight: true,
   },
   {

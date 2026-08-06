@@ -5,7 +5,7 @@ start: Feb 2022
 end: Apr 2023
 location: Austin, Texas (Remote)
 product: 'Immersed VR platform'
-tech: [MRTK, 'UDP/TCP', 'Performance profiling']
+tech: ['VR/AR', MRTK, 'UDP/TCP', 'Performance Profiling']
 order: 3
 ---
 
