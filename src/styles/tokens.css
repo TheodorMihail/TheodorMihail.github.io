@@ -1,0 +1,60 @@
+/* Design tokens. Dark arcade / space.
+   The aesthetic is the frame — screenshots and copy are the content. */
+
+:root {
+  /* Surfaces */
+  --canvas: #05060b;
+  --surface: #0e121c;
+  --surface-raised: #141926;
+  --hairline: #1e2433;
+  --hairline-strong: #2b3345;
+
+  /* Text */
+  --text: #e8ecf5;
+  --text-muted: #8a93a8;
+  --text-faint: #5b6478;
+
+  /* Accent — one neon, used for links, focus, active states */
+  --accent: #4de3d3;
+  --accent-bright: #7ff0e4;
+  --accent-glow: rgb(77 227 211 / 0.16);
+  --accent-wash: rgb(77 227 211 / 0.07);
+
+  /* Held in reserve for one or two genuine "live" highlights */
+  --hot: #ff4d8d;
+  --hot-glow: rgb(255 77 141 / 0.18);
+
+  /* Type */
+  --font-display: 'Space Grotesk Variable', system-ui, sans-serif;
+  --font-body: 'Inter Variable', system-ui, sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, 'SFMono-Regular', monospace;
+  --font-pixel: 'Press Start 2P', var(--font-mono);
+
+  --step--1: clamp(0.78rem, 0.76rem + 0.1vw, 0.84rem);
+  --step-0: clamp(0.95rem, 0.92rem + 0.15vw, 1.05rem);
+  --step-1: clamp(1.15rem, 1.08rem + 0.35vw, 1.4rem);
+  --step-2: clamp(1.45rem, 1.3rem + 0.75vw, 2rem);
+  --step-3: clamp(1.9rem, 1.6rem + 1.5vw, 3rem);
+  --step-4: clamp(2.6rem, 1.9rem + 3.4vw, 5rem);
+
+  /* Space */
+  --space-2xs: 0.25rem;
+  --space-xs: 0.5rem;
+  --space-sm: 0.75rem;
+  --space-md: 1.25rem;
+  --space-lg: 2rem;
+  --space-xl: 3.25rem;
+  --space-2xl: 5rem;
+  --space-3xl: 7.5rem;
+
+  /* Layout */
+  --content-width: 1120px;
+  --gutter: clamp(1.25rem, 4vw, 3rem);
+
+  /* Shape + motion */
+  --radius-sm: 4px;
+  --radius: 8px;
+  --radius-lg: 14px;
+  --ease: cubic-bezier(0.2, 0.7, 0.3, 1);
+  --transition: 180ms var(--ease);
+}

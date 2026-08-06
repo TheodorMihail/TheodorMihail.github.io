@@ -1,0 +1,41 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import SectionHeader from '../components/SectionHeader.astro';
+import Placeholder from '../components/Placeholder.astro';
+---
+
+<BaseLayout>
+  <Hero />
+
+  <section class="section" id="work">
+    <div class="container">
+      <SectionHeader index="01" title="Selected work" />
+      <Placeholder
+        label="Projects"
+        note="Space Invaders and BaseArchitecture land here, each with its own page."
+      />
+    </div>
+  </section>
+
+  <section class="section" id="experience">
+    <div class="container">
+      <SectionHeader index="02" title="Experience" />
+      <Placeholder label="Career timeline" note="Roles, dates and what I built at each." />
+    </div>
+  </section>
+
+  <section class="section" id="about">
+    <div class="container">
+      <SectionHeader index="03" title="About" />
+      <Placeholder label="Bio" note="Who I am and the kind of systems I like building." />
+    </div>
+  </section>
+
+  <section class="section" id="contact">
+    <div class="container">
+      <SectionHeader index="04" title="Contact" />
+      <Placeholder label="Get in touch" note="Email and social links." />
+    </div>
+  </section>
+</BaseLayout>

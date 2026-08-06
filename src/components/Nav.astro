@@ -1,0 +1,101 @@
+---
+import { SITE, NAV_ITEMS } from '../consts';
+---
+
+<header class="nav">
+  <div class="container nav__inner">
+    <a class="brand" href="/">
+      <span class="brand__mark" aria-hidden="true">TM</span>
+      <span class="brand__name">{SITE.name}</span>
+    </a>
+
+    <nav aria-label="Primary">
+      <ul class="nav__list">
+        {
+          NAV_ITEMS.map((item) => (
+            <li>
+              <a href={item.href}>{item.label}</a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<style>
+  .nav {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: rgb(5 6 11 / 0.72);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--hairline);
+  }
+
+  .nav__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-md);
+    min-height: 4rem;
+  }
+
+  .brand {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-sm);
+    color: var(--text);
+    text-decoration: none;
+  }
+
+  .brand__mark {
+    display: grid;
+    place-items: center;
+    width: 1.9rem;
+    height: 1.9rem;
+    border: 1px solid var(--accent);
+    border-radius: var(--radius-sm);
+    background: var(--accent-wash);
+    color: var(--accent);
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.04em;
+    transition: box-shadow var(--transition);
+  }
+
+  .brand:hover .brand__mark {
+    box-shadow: 0 0 0 1px var(--accent-glow), 0 0 22px -6px var(--accent);
+  }
+
+  .brand__name {
+    font-family: var(--font-display);
+    font-weight: 600;
+    letter-spacing: -0.01em;
+  }
+
+  .nav__list {
+    display: flex;
+    gap: clamp(0.75rem, 2.5vw, 1.75rem);
+    list-style: none;
+    padding: 0;
+  }
+
+  .nav__list a {
+    color: var(--text-muted);
+    font-family: var(--font-mono);
+    font-size: var(--step--1);
+    text-decoration: none;
+    transition: color var(--transition);
+  }
+
+  .nav__list a:hover {
+    color: var(--accent);
+  }
+
+  @media (max-width: 34rem) {
+    .brand__name {
+      display: none;
+    }
+  }
+</style>

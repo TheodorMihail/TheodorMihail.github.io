@@ -1,0 +1,44 @@
+---
+interface Props {
+  /** Two-digit section index, rendered in the pixel face. */
+  index: string;
+  title: string;
+  id?: string;
+}
+
+const { index, title, id } = Astro.props;
+---
+
+<div class="section-header">
+  <span class="section-header__index" aria-hidden="true">{index}</span>
+  <h2 id={id}>{title}</h2>
+  <span class="section-header__rule" aria-hidden="true"></span>
+</div>
+
+<style>
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+    margin-bottom: var(--space-xl);
+  }
+
+  .section-header__index {
+    font-family: var(--font-pixel);
+    font-size: 0.7rem;
+    color: var(--accent);
+    line-height: 1;
+    flex-shrink: 0;
+  }
+
+  .section-header h2 {
+    font-size: var(--step-2);
+    flex-shrink: 0;
+  }
+
+  .section-header__rule {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(to right, var(--hairline-strong), transparent);
+  }
+</style>

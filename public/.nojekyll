@@ -1,0 +1,2 @@
+# Disables GitHub Pages' Jekyll processing, which would otherwise drop
+# underscore-prefixed files. Unity WebGL build output relies on those.

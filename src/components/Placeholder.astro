@@ -1,0 +1,39 @@
+---
+/** Phase 1 stand-in for a section that gets real content later. */
+interface Props {
+  label: string;
+  note: string;
+}
+
+const { label, note } = Astro.props;
+---
+
+<div class="placeholder">
+  <span class="placeholder__label">{label}</span>
+  <p class="placeholder__note">{note}</p>
+</div>
+
+<style>
+  .placeholder {
+    border: 1px dashed var(--hairline-strong);
+    border-radius: var(--radius-lg);
+    background: linear-gradient(180deg, rgb(14 18 28 / 0.6), transparent);
+    padding: var(--space-xl) var(--space-lg);
+    text-align: center;
+  }
+
+  .placeholder__label {
+    display: inline-block;
+    font-family: var(--font-mono);
+    font-size: var(--step--1);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+
+  .placeholder__note {
+    margin-top: var(--space-xs);
+    color: var(--text-faint);
+    font-size: var(--step--1);
+  }
+</style>
