@@ -19,4 +19,4 @@ npm run build    # static output in dist/
 npm run preview  # serve the built output
 ```
 
-Requires Node 20.19+ (some build dependencies need it).
+Requires Node 22.12+ (Astro 7's minimum). Developed on Node 24 LTS, which is what CI uses.
