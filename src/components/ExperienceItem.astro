@@ -1,0 +1,173 @@
+---
+import TechTag from './TechTag.astro';
+
+interface Props {
+  company: string;
+  role: string;
+  start: string;
+  end: string;
+  location: string;
+  product?: string;
+  tech: string[];
+  /** Highlights the currently-held role. */
+  current?: boolean;
+}
+
+const { company, role, start, end, location, product, tech, current = false } = Astro.props;
+---
+
+<article class="role">
+  <div class="role__rail" aria-hidden="true">
+    <span class:list={['role__dot', current && 'role__dot--current']}></span>
+  </div>
+
+  <div class="role__body">
+    <p class="role__dates">
+      {start} – {end}
+      {current && <span class="role__badge">Current</span>}
+    </p>
+
+    <h3 class="role__title">{role}</h3>
+    <p class="role__company">{company} · <span class="role__location">{location}</span></p>
+    {product && <p class="role__product">{product}</p>}
+
+    <div class="role__detail">
+      <slot />
+    </div>
+
+    {
+      tech.length > 0 && (
+        <ul class="role__tech">
+          {tech.map((item) => (
+            <li>
+              <TechTag label={item} />
+            </li>
+          ))}
+        </ul>
+      )
+    }
+  </div>
+</article>
+
+<style>
+  .role {
+    display: grid;
+    grid-template-columns: 1.25rem 1fr;
+    gap: var(--space-md);
+    padding-bottom: var(--space-xl);
+  }
+
+  /* Vertical connector line down the timeline */
+  .role__rail {
+    position: relative;
+    display: flex;
+    justify-content: center;
+  }
+
+  .role__rail::before {
+    content: '';
+    position: absolute;
+    top: 0.55rem;
+    bottom: -0.5rem;
+    width: 1px;
+    background: var(--hairline);
+  }
+
+  .role:last-child .role__rail::before {
+    display: none;
+  }
+
+  .role__dot {
+    position: relative;
+    z-index: 1;
+    width: 0.6rem;
+    height: 0.6rem;
+    margin-top: 0.5rem;
+    border-radius: 50%;
+    border: 1px solid var(--hairline-strong);
+    background: var(--canvas);
+  }
+
+  .role__dot--current {
+    border-color: var(--accent);
+    background: var(--accent);
+  }
+
+  .role__dates {
+    display: flex;
+    align-items: center;
+    gap: var(--space-xs);
+    font-family: var(--font-mono);
+    font-size: var(--step--1);
+    color: var(--text-faint);
+  }
+
+  .role__badge {
+    padding: 0.1rem 0.45rem;
+    border: 1px solid var(--accent);
+    border-radius: var(--radius-sm);
+    color: var(--accent);
+    font-size: 0.7rem;
+  }
+
+  .role__title {
+    margin-top: var(--space-2xs);
+    font-size: var(--step-1);
+  }
+
+  .role__company {
+    margin-top: 0.1rem;
+    font-weight: 500;
+  }
+
+  .role__location {
+    color: var(--text-muted);
+    font-weight: 400;
+  }
+
+  .role__product {
+    margin-top: 0.1rem;
+    color: var(--text-muted);
+    font-size: var(--step--1);
+    font-style: italic;
+  }
+
+  .role__detail {
+    margin-top: var(--space-sm);
+    color: var(--text-muted);
+  }
+
+  .role__detail :global(p) {
+    max-width: var(--measure);
+  }
+
+  .role__detail :global(ul) {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+    margin: 0;
+    padding-left: 1.1rem;
+  }
+
+  .role__detail :global(li) {
+    max-width: var(--measure);
+  }
+
+  .role__detail :global(li)::marker {
+    color: var(--accent);
+  }
+
+  .role__detail :global(strong) {
+    color: var(--text);
+    font-weight: 600;
+  }
+
+  .role__tech {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2xs);
+    margin-top: var(--space-md);
+    padding: 0;
+    list-style: none;
+  }
+</style>

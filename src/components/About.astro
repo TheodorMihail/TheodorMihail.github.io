@@ -1,0 +1,108 @@
+---
+import { Image } from 'astro:assets';
+import { SITE } from '../consts';
+
+/**
+ * This section is the one place the full technical range is stated. Keep the
+ * hero and section leads free of capability lists so nothing repeats.
+ *
+ * Photo is picked up automatically. Drop a file at `src/assets/profile.jpg`
+ * (.jpeg, .png and .webp also work) and it appears; with no file present the
+ * text runs full width.
+ */
+const matches = import.meta.glob<{ default: ImageMetadata }>(
+  '../assets/profile.{jpg,jpeg,png,webp}',
+  { eager: true }
+);
+const photo = Object.values(matches)[0]?.default;
+---
+
+<div class:list={['about', photo && 'about--with-photo']}>
+  {
+    photo && (
+      <div class="about__photo">
+        <Image
+          src={photo}
+          alt={SITE.name}
+          widths={[240, 480]}
+          sizes="(min-width: 46rem) 208px, 160px"
+          loading="lazy"
+        />
+      </div>
+    )
+  }
+
+  <div class="about__text">
+    <p>
+      Hi, I'm Theodor, a Unity developer and architect based in Romania, with 14 years building
+      games across PC, mobile, TVs and VR.
+    </p>
+
+    <p>
+      Much of my focus sits with the underlying systems: real-time and turn-based multiplayer,
+      network communication and optimisation, and
+      server-authoritative designs that keep the server the source of truth so clients cannot
+      influence outcomes. Alongside that, system design grounded in established patterns and coding
+      principles, and the implementation, extension and adaptation of the plugins and frameworks a
+      team depends on.
+    </p>
+
+    <p>
+      An equal share of my experience is operational: feature flagging, phased rollouts, A/B
+      testing, content updates and tuning, all of which continue well beyond release. I care as much
+      about the codebase as the people building it, and whether leading a team or working as an
+      embedded contributor, I bring the same focus on solid architecture, clear communication and
+      genuine ownership of what ships.
+    </p>
+
+    <p>
+      AI tools like Claude Code have become a core part of how I work, helping me plan better, catch
+      issues earlier, and think problems through before writing a line of code.
+    </p>
+
+    <p>
+      Outside of work, games remain a long-standing personal interest and a large part of why the
+      industry still holds my attention. I'm always happy to discuss game architecture, multiplayer
+      systems, or where AI-assisted development is heading.
+    </p>
+  </div>
+</div>
+
+<style>
+  .about {
+    display: grid;
+    gap: var(--space-lg);
+  }
+
+  .about--with-photo {
+    grid-template-columns: minmax(0, 13rem) minmax(0, 1fr);
+    align-items: start;
+    gap: var(--space-xl);
+  }
+
+  .about__photo :global(img) {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1;
+    object-fit: cover;
+    border: 1px solid var(--hairline);
+    border-radius: var(--radius-lg);
+  }
+
+  .about__text {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+    color: var(--text-muted);
+  }
+
+  @media (max-width: 46rem) {
+    .about--with-photo {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    .about__photo {
+      max-width: 10rem;
+    }
+  }
+</style>

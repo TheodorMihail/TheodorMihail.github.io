@@ -3,15 +3,15 @@ import { SITE, LINKS } from '../consts';
 
 const year = new Date().getFullYear();
 const links = [
-  { label: 'GitHub', href: LINKS.github },
+  { label: 'Email', href: `mailto:${LINKS.email}` },
   { label: 'LinkedIn', href: LINKS.linkedin },
-  { label: 'Email', href: LINKS.email ? `mailto:${LINKS.email}` : '' },
-].filter((link) => link.href !== '');
+  { label: 'GitHub', href: LINKS.github },
+];
 ---
 
 <footer class="footer">
   <div class="container footer__inner">
-    <p class="footer__meta">© {year} {SITE.name}</p>
+    <p class="footer__meta">© {year} {SITE.name} · {SITE.location}</p>
 
     <ul class="footer__links">
       {
@@ -29,7 +29,6 @@ const links = [
 
 <style>
   .footer {
-    margin-top: var(--space-2xl);
     border-top: 1px solid var(--hairline);
     padding-block: var(--space-lg);
   }
@@ -57,7 +56,6 @@ const links = [
 
   .footer__links a {
     color: var(--text-muted);
-    font-family: var(--font-mono);
     font-size: var(--step--1);
     text-decoration: none;
     transition: color var(--transition);
