@@ -1,21 +1,19 @@
 ---
+import Starfield from './Starfield.astro';
 import { SITE } from '../consts';
 ---
 
 <section class="hero">
+  <Starfield />
+
   <div class="container hero__inner">
-    <p class="hero__eyebrow">Portfolio</p>
+    <p class="kicker hero__eyebrow">Portfolio</p>
 
     <h1 class="hero__name">{SITE.name}</h1>
 
-    <p class="hero__role">
-      <span class="hero__cursor" aria-hidden="true"></span>
-      {SITE.role}
-    </p>
+    <p class="hero__role">{SITE.role}</p>
 
-    <p class="hero__blurb">
-      {SITE.description}
-    </p>
+    <p class="hero__blurb">{SITE.description}</p>
 
     <div class="hero__actions">
       <a class="button button--primary" href="/#work">View projects</a>
@@ -26,51 +24,40 @@ import { SITE } from '../consts';
 
 <style>
   .hero {
-    padding-block: clamp(var(--space-2xl), 12vh, var(--space-3xl)) var(--space-2xl);
+    position: relative;
+    padding-block: clamp(var(--space-2xl), 11vh, var(--space-3xl)) var(--space-2xl);
+    border-bottom: 1px solid var(--hairline);
   }
 
   .hero__inner {
-    max-width: 46rem;
+    position: relative;
+    z-index: 1;
+    max-width: 52rem;
   }
 
   .hero__eyebrow {
-    font-family: var(--font-pixel);
-    font-size: 0.62rem;
-    line-height: 1;
-    letter-spacing: 0.06em;
     color: var(--accent);
-    text-transform: uppercase;
-    margin-bottom: var(--space-lg);
+    margin-bottom: var(--space-md);
   }
 
   .hero__name {
     font-size: var(--step-4);
-    letter-spacing: -0.035em;
+    letter-spacing: -0.03em;
   }
 
   .hero__role {
-    display: flex;
-    align-items: center;
-    gap: var(--space-xs);
     margin-top: var(--space-sm);
-    font-family: var(--font-mono);
-    font-size: var(--step-1);
+    font-size: var(--step-2);
+    font-family: var(--font-display);
+    font-weight: 500;
     color: var(--accent);
-  }
-
-  .hero__cursor {
-    width: 0.55rem;
-    height: 1.05rem;
-    background: var(--accent);
-    animation: blink 1.2s steps(2, start) infinite;
+    letter-spacing: -0.01em;
   }
 
   .hero__blurb {
     margin-top: var(--space-md);
-    max-width: 38rem;
     color: var(--text-muted);
     font-size: var(--step-1);
-    line-height: 1.6;
   }
 
   .hero__actions {
@@ -78,17 +65,5 @@ import { SITE } from '../consts';
     flex-wrap: wrap;
     gap: var(--space-sm);
     margin-top: var(--space-lg);
-  }
-
-  @keyframes blink {
-    to {
-      opacity: 0;
-    }
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .hero__cursor {
-      animation: none;
-    }
   }
 </style>

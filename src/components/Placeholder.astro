@@ -17,7 +17,7 @@ const { label, note } = Astro.props;
   .placeholder {
     border: 1px dashed var(--hairline-strong);
     border-radius: var(--radius-lg);
-    background: linear-gradient(180deg, rgb(14 18 28 / 0.6), transparent);
+    background: var(--surface);
     padding: var(--space-xl) var(--space-lg);
     text-align: center;
   }
@@ -26,14 +26,14 @@ const { label, note } = Astro.props;
     display: inline-block;
     font-family: var(--font-mono);
     font-size: var(--step--1);
-    letter-spacing: 0.18em;
+    letter-spacing: 0.14em;
     text-transform: uppercase;
     color: var(--accent);
   }
 
   .placeholder__note {
-    margin-top: var(--space-xs);
-    color: var(--text-faint);
+    margin: var(--space-xs) auto 0;
+    color: var(--text-muted);
     font-size: var(--step--1);
   }
 </style>
