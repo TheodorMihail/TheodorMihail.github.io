@@ -19,8 +19,10 @@ tech:
   - SOLID
   - MVC
 repoUrl: https://github.com/TheodorMihail/SpaceInvaders
+playUrl: /play/space-invaders/
 cover: ../../assets/projects/space-invaders/gameplay.png
 gallery:
+  - ../../assets/projects/space-invaders/gameplay.png
   - ../../assets/projects/space-invaders/talents.png
   - ../../assets/projects/space-invaders/inventory.png
 highlights:

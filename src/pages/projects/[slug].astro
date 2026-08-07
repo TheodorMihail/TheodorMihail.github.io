@@ -14,7 +14,9 @@ export async function getStaticPaths() {
 }
 
 const { project } = Astro.props;
-const { title, tagline, role, year, status, blurb, tech, repoUrl, playUrl, cover, gallery, highlights } =
+/* `cover` is deliberately unused here: it belongs to the card. Screenshots for
+   this page live in `gallery`, below the write-up. */
+const { title, tagline, role, year, status, blurb, tech, repoUrl, playUrl, gallery, highlights } =
   project.data;
 
 const { Content } = await render(project);
@@ -67,21 +69,6 @@ const { Content } = await render(project);
         </div>
       </div>
     </header>
-
-    {
-      cover && (
-        <div class="container">
-          <Image
-            class="project__cover"
-            src={cover}
-            alt={`${title} gameplay`}
-            widths={[640, 960, 1280]}
-            sizes="(min-width: 70rem) 1060px, 92vw"
-            loading="eager"
-          />
-        </div>
-      )
-    }
 
     {
       !playUrl && (
@@ -212,12 +199,6 @@ const { Content } = await render(project);
 
   .project__actions :global(.project__external) {
     flex-shrink: 0;
-  }
-
-  .project__cover {
-    width: 100%;
-    border: 1px solid var(--hairline);
-    border-radius: var(--radius-lg);
   }
 
   /* Reserved for the Unity WebGL build; replaced by the player once it lands. */
