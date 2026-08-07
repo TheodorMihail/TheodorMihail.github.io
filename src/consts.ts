@@ -31,6 +31,13 @@ export const STATS = [
   { value: '100M+', label: ['downloads across', 'contributed titles'] },
 ] as const;
 
+/**
+ * Cloudflare Web Analytics. Cookieless and collects no personal data, so it
+ * needs no consent banner. Public by design: the token identifies the site,
+ * not the account, and only accepts beacons.
+ */
+export const ANALYTICS_TOKEN = 'f153f934b4324ccc8d766371d075494d';
+
 export const LINKS = {
   email: 'holbantheodormihail@gmail.com',
   linkedin: 'https://www.linkedin.com/in/theodor-mihail-holban',

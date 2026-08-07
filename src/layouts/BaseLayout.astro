@@ -8,7 +8,7 @@ import '../styles/global.css';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
 import Starfield from '../components/Starfield.astro';
-import { SITE } from '../consts';
+import { SITE, ANALYTICS_TOKEN } from '../consts';
 
 interface Props {
   title?: string;
@@ -54,5 +54,12 @@ const canonical = new URL(Astro.url.pathname, Astro.site).href;
       <slot />
     </main>
     <Footer />
+
+    {/* Deferred to the end of body, so it never blocks rendering. */}
+    <script
+      is:inline
+      type="module"
+      src="https://static.cloudflareinsights.com/beacon.min.js"
+      data-cf-beacon={`{"token": "${ANALYTICS_TOKEN}"}`}></script>
   </body>
 </html>
