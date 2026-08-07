@@ -1,0 +1,24 @@
+---
+/** Arrow marking a link to another page on this site. Pair with ExternalIcon for outbound. */
+interface Props {
+  class?: string;
+}
+
+const { class: className } = Astro.props;
+---
+
+<svg
+  class={className}
+  viewBox="0 0 16 16"
+  width="13"
+  height="13"
+  aria-hidden="true"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="1.8"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path d="M3 8h10"></path>
+  <path d="M9 4l4 4-4 4"></path>
+</svg>
