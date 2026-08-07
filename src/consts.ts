@@ -10,7 +10,8 @@ export const SITE = {
   role: 'Senior Unity Engineer & Architect',
   /** Platforms only. Technologies belong in About or on a title card. */
   platforms: 'PC · Mobile · TVs · VR',
-  location: 'Romania · Remote',
+  /** Footer only. Per-role locations live on the experience entries. */
+  location: 'Romania',
   url: 'https://theodormihail.github.io',
   /** Displayed in the hero. Positioning, not a capability list. */
   intro:
