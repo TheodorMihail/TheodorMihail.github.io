@@ -29,20 +29,11 @@ const description =
             loading="eager"
           />
           <div class="poster__overlay">
-            <div class="poster__desktop" id="poster-desktop">
-              <button class="button button--primary poster__button" id="play-button" type="button">
-                Play now
-              </button>
-              <p class="poster__note">Around 35 MB. Keyboard required.</p>
-            </div>
-
-            {/* Swapped in by script when the device looks like a phone or tablet. */}
-            <div class="poster__mobile" id="poster-mobile" hidden>
-              <p class="poster__mobile-note">
-                Desktop and keyboard required for proper play experience.
-              </p>
-              <button class="button poster__try" id="try-anyway" type="button">Try anyway</button>
-            </div>
+            <button class="button button--primary poster__button" id="play-button" type="button">
+              Play now
+            </button>
+            {/* Note text is swapped by script on touch devices. */}
+            <p class="poster__note" id="poster-note">Around 35 MB. Keyboard recommended.</p>
           </div>
         </div>
 
@@ -69,6 +60,8 @@ const description =
       <div class="play__cols">
         <div>
           <h2 class="play__h2">Controls</h2>
+
+          <p class="controls__platform">Desktop</p>
           <dl class="controls">
             <div>
               <dt>Move</dt>
@@ -77,6 +70,18 @@ const description =
             <div>
               <dt>Shoot</dt>
               <dd>Space, hold to keep firing</dd>
+            </div>
+          </dl>
+
+          <p class="controls__platform">Phone and tablet</p>
+          <dl class="controls">
+            <div>
+              <dt>Move</dt>
+              <dd>On-screen stick</dd>
+            </div>
+            <div>
+              <dt>Shoot</dt>
+              <dd>On-screen button, hold to keep firing</dd>
             </div>
           </dl>
         </div>
@@ -106,9 +111,7 @@ const description =
   const failed = document.getElementById('failed');
   const failedNote = document.getElementById('failed-note');
   const canvas = document.getElementById('unity-canvas');
-  const posterDesktop = document.getElementById('poster-desktop');
-  const posterMobile = document.getElementById('poster-mobile');
-  const tryAnyway = document.getElementById('try-anyway');
+  const posterNote = document.getElementById('poster-note');
   const debugPanel = document.getElementById('debug');
 
   /*
@@ -152,20 +155,16 @@ const description =
   /*
    * Coarse pointer plus no hover is the reliable signal for a touch device;
    * user-agent sniffing misses tablets and lies on request-desktop-site.
+   * Touch is playable via the on-screen controls, so this only adjusts the
+   * wording, it never blocks.
    */
-  const isMobile =
+  const isTouch =
     window.matchMedia('(pointer: coarse) and (hover: none)').matches ||
     /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
 
-  if (isMobile) {
-    posterDesktop.hidden = true;
-    posterMobile.hidden = false;
+  if (isTouch) {
+    posterNote.textContent = 'Around 35 MB. Playable on touch, best on desktop.';
   }
-
-  tryAnyway.addEventListener('click', () => {
-    posterMobile.hidden = true;
-    posterDesktop.hidden = false;
-  });
 
   playButton.addEventListener('click', () => {
     poster.hidden = true;
@@ -295,40 +294,18 @@ const description =
     background: rgb(16 19 24 / 0.72);
   }
 
-  .poster__desktop,
-  .poster__mobile {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: var(--space-sm);
-    max-width: 32rem;
-    padding-inline: var(--space-md);
-    text-align: center;
-  }
-
-  .poster__desktop[hidden],
-  .poster__mobile[hidden] {
-    display: none;
-  }
-
   .poster__button {
     font-size: var(--step-0);
     padding: 0.85rem 2rem;
   }
 
   .poster__note {
+    max-width: 24rem;
+    padding-inline: var(--space-md);
     font-family: var(--font-mono);
     font-size: var(--step--1);
+    text-align: center;
     color: var(--text-muted);
-  }
-
-  .poster__mobile-note {
-    font-size: var(--step--1);
-    color: var(--text);
-  }
-
-  .poster__try {
-    font-size: var(--step--1);
   }
 
   .loading,
@@ -428,8 +405,17 @@ const description =
     font-weight: 500;
   }
 
-  .controls {
+  .controls__platform {
     margin-top: var(--space-md);
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+
+  .controls {
+    margin-top: var(--space-xs);
   }
 
   .controls > div {
