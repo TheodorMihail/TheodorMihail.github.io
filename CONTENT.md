@@ -113,8 +113,12 @@ fails.
 Put them in `src/assets/projects/<slug>/` and reference them by relative path from the Markdown
 file. Astro converts them to WebP and generates a `srcset`, so commit the full-resolution source.
 
-`cover` crops to 16:9 on the card, so use landscape. `gallery` images render uncropped in a grid
-lower down the page.
+`cover` is used **only by the card**, where it crops to 16:9, so use landscape. The detail page
+shows `gallery` instead, uncropped in a grid below the write-up. To show the cover shot there too,
+list it in `gallery` as well, which is what `space-invaders.md` does.
+
+That split is deliberate: a full-width hero image pushes the technical content below the fold, and
+on a project page the writing is the thing worth reading first.
 
 ### Projects with nothing to show
 

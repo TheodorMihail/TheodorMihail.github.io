@@ -11,3 +11,12 @@
 *.woff binary
 *.woff2 binary
 *.ico binary
+
+# Unity WebGL build output. These must stay byte-exact: line-ending
+# normalisation silently corrupts them and the player fails to load.
+*.unityweb binary
+*.wasm binary
+*.bundle binary
+*.data binary
+*.bin binary
+*.hash binary
