@@ -1,0 +1,406 @@
+---
+import { getCollection, render } from 'astro:content';
+import { Image } from 'astro:assets';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ExternalIcon from '../../components/ExternalIcon.astro';
+
+export async function getStaticPaths() {
+  const projects = await getCollection('projects', ({ data }) => data.hasPage);
+
+  return projects.map((project) => ({
+    params: { slug: project.id },
+    props: { project },
+  }));
+}
+
+const { project } = Astro.props;
+const { title, tagline, role, year, status, blurb, tech, repoUrl, playUrl, cover, gallery, highlights } =
+  project.data;
+
+const { Content } = await render(project);
+---
+
+<BaseLayout title={title} description={blurb}>
+  <article class="project">
+    <header class="section project__header">
+      <div class="container">
+        <a class="project__back" href="/#projects">Back to projects</a>
+
+        <h1 class="project__title">{title}</h1>
+        <p class="project__tagline">{tagline}</p>
+
+        <dl class="project__meta">
+          <div>
+            <dt>Role</dt>
+            <dd>{role}</dd>
+          </div>
+          <div>
+            <dt>Year</dt>
+            <dd>{year}</dd>
+          </div>
+          {
+            status && (
+              <div>
+                <dt>Status</dt>
+                <dd>{status}</dd>
+              </div>
+            )
+          }
+        </dl>
+
+        <ul class="project__tech">
+          {tech.map((item) => <li>{item}</li>)}
+        </ul>
+
+        <div class="project__actions">
+          <a
+            class="button button--primary"
+            href={repoUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            View source
+            <ExternalIcon class="project__external" />
+            <span class="visually-hidden">(opens in a new tab)</span>
+          </a>
+          {playUrl && <a class="button" href={playUrl}>Play in browser</a>}
+        </div>
+      </div>
+    </header>
+
+    {
+      cover && (
+        <div class="container">
+          <Image
+            class="project__cover"
+            src={cover}
+            alt={`${title} gameplay`}
+            widths={[640, 960, 1280]}
+            sizes="(min-width: 70rem) 1060px, 92vw"
+            loading="eager"
+          />
+        </div>
+      )
+    }
+
+    {
+      !playUrl && (
+        <div class="container">
+          <div class="project__play-slot">
+            <span class="project__play-label">Playable build</span>
+            <p class="project__play-note">
+              A browser build is in progress and will run here, on this page, once it ships.
+            </p>
+          </div>
+        </div>
+      )
+    }
+
+    <div class="section container project__layout">
+      <div class="project__body">
+        <Content />
+      </div>
+
+      {
+        highlights.length > 0 && (
+          <aside class="project__highlights">
+            <h2 class="project__highlights-title">Highlights</h2>
+            <ul>
+              {highlights.map((item) => (
+                <li>{item}</li>
+              ))}
+            </ul>
+          </aside>
+        )
+      }
+    </div>
+
+    {
+      gallery.length > 0 && (
+        <div class="section container">
+          <h2 class="project__gallery-title">Screens</h2>
+          <div class="project__gallery">
+            {gallery.map((shot) => (
+              <Image
+                src={shot}
+                alt={`${title} screenshot`}
+                widths={[640, 960]}
+                sizes="(min-width: 60rem) 520px, 92vw"
+                loading="lazy"
+              />
+            ))}
+          </div>
+        </div>
+      )
+    }
+  </article>
+</BaseLayout>
+
+<style>
+  .project__header {
+    padding-bottom: var(--space-lg);
+  }
+
+  .project__back {
+    display: inline-block;
+    margin-bottom: var(--space-md);
+    font-family: var(--font-mono);
+    font-size: var(--step--1);
+    text-decoration: none;
+  }
+
+  .project__back::before {
+    content: '← ';
+  }
+
+  .project__title {
+    font-size: var(--step-3);
+  }
+
+  .project__tagline {
+    margin-top: var(--space-xs);
+    font-size: var(--step-1);
+    color: var(--accent);
+  }
+
+  .project__meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-lg);
+    margin-top: var(--space-lg);
+  }
+
+  .project__meta dt {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--text-faint);
+  }
+
+  .project__meta dd {
+    margin: 0;
+    font-weight: 500;
+  }
+
+  .project__tech {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2xs);
+    margin-top: var(--space-md);
+    padding: 0;
+    list-style: none;
+  }
+
+  .project__tech li {
+    padding: 0.1rem 0.45rem;
+    border: 1px solid var(--hairline-strong);
+    border-radius: var(--radius-sm);
+    background: var(--canvas-deep);
+    color: var(--text-muted);
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    line-height: 1.7;
+  }
+
+  .project__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-sm);
+    margin-top: var(--space-lg);
+  }
+
+  .project__actions :global(.project__external) {
+    flex-shrink: 0;
+  }
+
+  .project__cover {
+    width: 100%;
+    border: 1px solid var(--hairline);
+    border-radius: var(--radius-lg);
+  }
+
+  /* Reserved for the Unity WebGL build; replaced by the player once it lands. */
+  .project__play-slot {
+    margin-top: var(--space-lg);
+    padding: var(--space-xl) var(--space-lg);
+    border: 1px dashed var(--hairline-strong);
+    border-radius: var(--radius-lg);
+    background: var(--surface);
+    text-align: center;
+  }
+
+  .project__play-label {
+    font-family: var(--font-mono);
+    font-size: var(--step--1);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+
+  .project__play-note {
+    margin: var(--space-xs) auto 0;
+    font-size: var(--step--1);
+    color: var(--text-muted);
+  }
+
+  .project__layout {
+    display: grid;
+    gap: var(--space-xl);
+    align-items: start;
+  }
+
+  @media (min-width: 60rem) {
+    .project__layout {
+      grid-template-columns: minmax(0, 1fr) 20rem;
+    }
+  }
+
+  .project__body :global(h2) {
+    margin-top: var(--space-xl);
+    padding-top: var(--space-md);
+    border-top: 1px solid var(--hairline);
+    font-size: var(--step-1);
+    font-family: var(--font-mono);
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    color: var(--text);
+  }
+
+  .project__body :global(h2:first-child) {
+    margin-top: 0;
+    padding-top: 0;
+    border-top: 0;
+  }
+
+  .project__body :global(p) {
+    margin-top: var(--space-md);
+    color: var(--text-muted);
+  }
+
+  .project__body :global(ul) {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+    margin-top: var(--space-md);
+    padding: 0;
+    list-style: none;
+    max-width: var(--measure);
+  }
+
+  .project__body :global(li) {
+    position: relative;
+    padding-left: 1.15rem;
+    color: var(--text-muted);
+  }
+
+  .project__body :global(li)::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.72em;
+    width: 5px;
+    height: 5px;
+    border-radius: 1px;
+    background: var(--accent);
+  }
+
+  /* Group heading: the label carries the line, so no body text follows it. */
+  .project__body :global(li:has(> ul)) {
+    color: var(--text);
+  }
+
+  .project__body :global(ul ul) {
+    gap: var(--space-2xs);
+    margin-top: var(--space-2xs);
+    margin-bottom: var(--space-sm);
+  }
+
+  /* Muted dash, so nested points read as detail under their group. */
+  .project__body :global(li li)::before {
+    top: 0.85em;
+    width: 8px;
+    height: 1px;
+    border-radius: 0;
+    background: var(--text-faint);
+  }
+
+  .project__body :global(li li) {
+    padding-left: 1.35rem;
+    font-size: var(--step--1);
+  }
+
+  .project__body :global(strong) {
+    font-weight: 600;
+    color: var(--text);
+  }
+
+  .project__body :global(code) {
+    padding: 0.1em 0.35em;
+    border: 1px solid var(--hairline);
+    border-radius: var(--radius-sm);
+    background: var(--canvas-deep);
+    color: var(--text);
+  }
+
+  .project__highlights {
+    position: sticky;
+    top: 6rem;
+    padding: var(--space-md);
+    border: 1px solid var(--hairline);
+    border-radius: var(--radius-lg);
+    background: var(--surface);
+  }
+
+  .project__highlights-title {
+    font-family: var(--font-mono);
+    font-size: var(--step--1);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--text-faint);
+  }
+
+  .project__highlights ul {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+    margin-top: var(--space-md);
+    padding: 0;
+    list-style: none;
+  }
+
+  .project__highlights li {
+    position: relative;
+    padding-left: 1.1rem;
+    font-size: var(--step--1);
+    color: var(--text-muted);
+  }
+
+  .project__highlights li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.62em;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--accent);
+  }
+
+  .project__gallery-title {
+    font-size: var(--step-2);
+  }
+
+  .project__gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr));
+    gap: var(--space-md);
+    margin-top: var(--space-lg);
+  }
+
+  .project__gallery :global(img) {
+    width: 100%;
+    border: 1px solid var(--hairline);
+    border-radius: var(--radius);
+  }
+</style>

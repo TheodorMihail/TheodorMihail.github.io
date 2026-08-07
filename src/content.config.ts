@@ -21,4 +21,43 @@ const experience = defineCollection({
   }),
 });
 
-export const collections = { experience };
+/**
+ * One file per personal project. Body is the long-form write-up rendered on
+ * the detail page. See CONTENT.md for the add-a-project flow.
+ */
+const projects = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/projects' }),
+  schema: ({ image }) =>
+    z.object({
+      title: z.string(),
+      /** One line under the title, on both the card and the detail page. */
+      tagline: z.string(),
+      role: z.string(),
+      year: z.string(),
+      /** Short state string, e.g. "In development" or "Released". */
+      status: z.string().optional(),
+      /** Card copy. Kept separate from the body so the grid stays scannable. */
+      blurb: z.string(),
+      /** Stack, shown on the detail page header only. */
+      tech: z.array(z.string()).default([]),
+      /** Card chips. What the project is, not how it is built. Falls back to `tech`. */
+      tags: z.array(z.string()).default([]),
+      repoUrl: z.url(),
+      /** Set once a playable build exists, which turns on the play button. */
+      playUrl: z.string().optional(),
+      /** With no cover, the card falls back to the generated module diagram. */
+      cover: image().optional(),
+      gallery: z.array(image()).default([]),
+      /** Bullets shown beside the write-up on the detail page. */
+      highlights: z.array(z.string()).default([]),
+      /**
+       * False for projects with nothing to show beyond the repo, so the card
+       * links straight out to GitHub instead of to a detail page.
+       */
+      hasPage: z.boolean().default(true),
+      /** Ascending, where 1 sorts first. */
+      order: z.number(),
+    }),
+});
+
+export const collections = { experience, projects };

@@ -1,5 +1,6 @@
 ---
 import { Image } from 'astro:assets';
+import ExternalIcon from './ExternalIcon.astro';
 import type { Title } from '../data/titles';
 
 interface Props {
@@ -47,21 +48,7 @@ const initials = title.name
         title.url ? (
           <a href={title.url} target="_blank" rel="noopener noreferrer">
             {title.name}
-            <svg
-              class="card__external"
-              viewBox="0 0 16 16"
-              width="12"
-              height="12"
-              aria-hidden="true"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="1.8"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            >
-              <path d="M6 3h7v7" />
-              <path d="M13 3 4 12" />
-            </svg>
+            <ExternalIcon class="card__external" />
             <span class="visually-hidden">(opens in a new tab)</span>
           </a>
         ) : (
@@ -157,13 +144,14 @@ const initials = title.name
     color: var(--accent);
   }
 
-  .card__external {
+  /* Global, since the glyph is rendered by ExternalIcon and carries no scope hash. */
+  .card__name a :global(.card__external) {
     flex-shrink: 0;
     color: var(--text-faint);
     transition: color var(--transition), transform var(--transition);
   }
 
-  .card__name a:hover .card__external {
+  .card__name a:hover :global(.card__external) {
     color: var(--accent);
     transform: translate(1px, -1px);
   }

@@ -1,0 +1,184 @@
+---
+import { Image } from 'astro:assets';
+import type { CollectionEntry } from 'astro:content';
+import ExternalIcon from './ExternalIcon.astro';
+import ArrowIcon from './ArrowIcon.astro';
+import ModuleDiagram from './ModuleDiagram.astro';
+
+interface Props {
+  project: CollectionEntry<'projects'>;
+}
+
+const { project } = Astro.props;
+const { title, tagline, status, blurb, tech, tags, repoUrl, cover, hasPage } = project.data;
+
+/** Projects without a page link straight out to the repo. */
+const href = hasPage ? `/projects/${project.id}/` : repoUrl;
+const external = !hasPage;
+
+/** Chips describe what the project is. The stack stays on the detail page. */
+const chips = tags.length > 0 ? tags : tech;
+---
+
+<article class="card">
+  <div class="card__art">
+    {
+      cover ? (
+        <Image
+          class="card__image"
+          src={cover}
+          alt={`${title} screenshot`}
+          widths={[320, 640, 960]}
+          sizes="(min-width: 60rem) 520px, (min-width: 40rem) 45vw, 90vw"
+          loading="lazy"
+        />
+      ) : (
+        <ModuleDiagram />
+      )
+    }
+  </div>
+
+  <div class="card__body">
+    {status && <p class="card__status">{status}</p>}
+
+    <h3 class="card__name">
+      <a href={href} {...external ? { target: '_blank', rel: 'noopener noreferrer' } : {}}>
+        {title}
+        {
+          external ? (
+            <>
+              <ExternalIcon class="card__glyph card__glyph--out" />
+              <span class="visually-hidden">(opens in a new tab)</span>
+            </>
+          ) : (
+            <ArrowIcon class="card__glyph" />
+          )
+        }
+      </a>
+    </h3>
+
+    <p class="card__tagline">{tagline}</p>
+    <p class="card__blurb">{blurb}</p>
+
+    <ul class="card__tech">
+      {chips.map((item) => <li>{item}</li>)}
+    </ul>
+  </div>
+</article>
+
+<style>
+  .card {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--hairline);
+    border-radius: var(--radius-lg);
+    background: var(--surface);
+    overflow: hidden;
+    transition: border-color var(--transition);
+  }
+
+  .card:hover {
+    border-color: var(--hairline-strong);
+  }
+
+  .card__art {
+    position: relative;
+    aspect-ratio: 16 / 9;
+    background: var(--canvas-deep);
+    border-bottom: 1px solid var(--hairline);
+    overflow: hidden;
+  }
+
+  .card__art :global(.card__image) {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .card__art :global(.diagram) {
+    display: block;
+  }
+
+  .card__body {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2xs);
+    flex: 1;
+    padding: var(--space-md);
+  }
+
+  .card__status {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    color: var(--text-faint);
+  }
+
+  .card__name {
+    font-size: var(--step-1);
+  }
+
+  .card__name a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35em;
+    text-decoration: none;
+    color: var(--text);
+  }
+
+  .card__name a:hover {
+    color: var(--accent);
+  }
+
+  /* Global, since the glyphs are rendered by child components with no scope hash. */
+  .card__name a :global(.card__glyph) {
+    flex-shrink: 0;
+    color: var(--text-faint);
+    transition: color var(--transition), transform var(--transition);
+  }
+
+  .card__name a:hover :global(.card__glyph) {
+    color: var(--accent);
+  }
+
+  /* Internal slides right, outbound nudges up and right. */
+  .card__name a:hover :global(.card__glyph) {
+    transform: translateX(2px);
+  }
+
+  .card__name a:hover :global(.card__glyph--out) {
+    transform: translate(1px, -1px);
+  }
+
+  .card__tagline {
+    font-size: var(--step--1);
+    font-weight: 500;
+    color: var(--accent);
+  }
+
+  .card__blurb {
+    margin-top: var(--space-2xs);
+    font-size: var(--step--1);
+    color: var(--text-muted);
+  }
+
+  /* Pinned bottom-left, so tech lines up across a row of cards. */
+  .card__tech {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2xs);
+    margin: auto 0 0;
+    padding: var(--space-md) 0 0;
+    list-style: none;
+  }
+
+  .card__tech li {
+    padding: 0.1rem 0.45rem;
+    border: 1px solid var(--hairline-strong);
+    border-radius: var(--radius-sm);
+    background: var(--canvas-deep);
+    color: var(--text-muted);
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    line-height: 1.7;
+  }
+</style>

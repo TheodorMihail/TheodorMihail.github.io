@@ -7,7 +7,7 @@ import TitleCard from '../components/TitleCard.astro';
 import ExperienceItem from '../components/ExperienceItem.astro';
 import About from '../components/About.astro';
 import Contact from '../components/Contact.astro';
-import Placeholder from '../components/Placeholder.astro';
+import ProjectCard from '../components/ProjectCard.astro';
 import { TITLES } from '../data/titles';
 import { LINKS } from '../consts';
 
@@ -18,6 +18,8 @@ const roles = (await getCollection('experience')).sort((a, b) => a.data.order - 
 const rendered = await Promise.all(
   roles.map(async (role) => ({ data: role.data, Content: (await render(role)).Content }))
 );
+
+const projects = (await getCollection('projects')).sort((a, b) => a.data.order - b.data.order);
 ---
 
 <BaseLayout>
@@ -75,10 +77,9 @@ const rendered = await Promise.all(
         Personal work with the source published, where the architecture is visible end to end.
       </p>
 
-      <Placeholder
-        label="Coming next"
-        note="Space Invaders and BaseArchitecture, each with its own page and a playable build."
-      />
+      <div class="project-grid">
+        {projects.map((project) => <ProjectCard project={project} />)}
+      </div>
     </div>
   </section>
 
@@ -107,6 +108,13 @@ const rendered = await Promise.all(
   .title-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(min(100%, 17rem), 1fr));
+    gap: var(--space-md);
+  }
+
+  /* Wider than the titles grid: fewer projects, each carrying more copy. */
+  .project-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 24rem), 1fr));
     gap: var(--space-md);
   }
 
