@@ -1,4 +1,5 @@
 ---
+import ContactForm from './ContactForm.astro';
 import { LINKS } from '../consts';
 
 const channels = [
@@ -13,20 +14,25 @@ const channels = [
     Open to Unity Senior Engineering, Architecture and Technical Leadership roles.
   </p>
 
-  <ul class="contact__list">
-    {
-      channels.map((channel) => (
-        <li class="contact__item">
-          <span class="contact__label">{channel.label}</span>
-          <a href={channel.href} rel="noopener">
-            {channel.value}
-          </a>
-        </li>
-      ))
-    }
-  </ul>
+  <div class="contact__cols">
+    <ContactForm />
 
-  <a class="button button--primary" href={`mailto:${LINKS.email}`}>Send an email</a>
+    <div class="contact__direct">
+      <p class="contact__direct-label">Or reach me directly</p>
+      <ul class="contact__list">
+        {
+          channels.map((channel) => (
+            <li class="contact__item">
+              <span class="contact__label">{channel.label}</span>
+              <a href={channel.href} rel="noopener">
+                {channel.value}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </div>
 </div>
 
 <style>
@@ -42,19 +48,41 @@ const channels = [
     color: var(--text-muted);
   }
 
+  .contact__cols {
+    display: grid;
+    gap: var(--space-xl);
+    width: 100%;
+    align-items: start;
+  }
+
+  @media (min-width: 58rem) {
+    .contact__cols {
+      grid-template-columns: minmax(0, 1fr) minmax(0, 23rem);
+    }
+  }
+
+  .contact__direct-label {
+    font-family: var(--font-mono);
+    font-size: var(--step--1);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--text-faint);
+  }
+
   .contact__list {
     display: grid;
     gap: var(--space-sm);
     width: 100%;
     max-width: 34rem;
-    margin: 0;
+    margin: var(--space-md) 0 0;
     padding: 0;
     list-style: none;
   }
 
   .contact__item {
     display: grid;
-    grid-template-columns: 6rem 1fr;
+    /* Narrow label column, so the email address fits on one line. */
+    grid-template-columns: 4.5rem 1fr;
     gap: var(--space-sm);
     align-items: baseline;
     padding-bottom: var(--space-sm);
@@ -68,6 +96,7 @@ const channels = [
   }
 
   .contact__item a {
+    font-size: var(--step--1);
     word-break: break-word;
   }
 </style>

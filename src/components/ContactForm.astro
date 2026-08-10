@@ -1,0 +1,171 @@
+---
+import { CONTACT_FORM } from '../consts';
+---
+
+<form
+  class="form"
+  id="contact-form"
+  action={CONTACT_FORM.endpoint}
+  method="POST"
+>
+  <input type="hidden" name="access_key" value={CONTACT_FORM.accessKey} />
+  <input type="hidden" name="subject" value={CONTACT_FORM.subject} />
+  <input type="hidden" name="from_name" value="Portfolio contact form" />
+
+  {/* Spam trap: hidden from people, tempting to bots. Named per Web3Forms. */}
+  <input class="form__trap" type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" />
+
+  <div class="form__row">
+    <div class="form__field">
+      <label for="name">Name</label>
+      <input id="name" name="name" type="text" required autocomplete="name" />
+    </div>
+
+    <div class="form__field">
+      <label for="email">Email</label>
+      <input id="email" name="email" type="email" required autocomplete="email" />
+    </div>
+  </div>
+
+  <div class="form__field">
+    <label for="message">Message</label>
+    <textarea id="message" name="message" rows="6" required></textarea>
+  </div>
+
+  <div class="form__actions">
+    <button class="button button--primary" type="submit" id="submit-button">Send message</button>
+    <p class="form__status" id="form-status" role="status" aria-live="polite"></p>
+  </div>
+
+</form>
+
+<script is:inline>
+  (() => {
+    const form = document.getElementById('contact-form');
+    const status = document.getElementById('form-status');
+    const button = document.getElementById('submit-button');
+
+    /* Without JS the form still posts natively, so this only upgrades feedback. */
+    form.addEventListener('submit', async (event) => {
+      event.preventDefault();
+
+      button.disabled = true;
+      status.textContent = 'Sending...';
+      status.className = 'form__status';
+
+      try {
+        const response = await fetch(form.action, {
+          method: 'POST',
+          headers: { Accept: 'application/json' },
+          body: new FormData(form),
+        });
+        const result = await response.json();
+
+        if (response.ok) {
+          form.reset();
+          status.textContent = 'Thanks, your message has been sent.';
+          status.className = 'form__status form__status--ok';
+        } else {
+          status.textContent = result.message || 'Something went wrong. Please try again.';
+          status.className = 'form__status form__status--error';
+        }
+      } catch {
+        status.textContent = 'Could not reach the server. Please email me directly instead.';
+        status.className = 'form__status form__status--error';
+      } finally {
+        button.disabled = false;
+      }
+    });
+  })();
+</script>
+
+<style>
+  .form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+    width: 100%;
+    max-width: 34rem;
+  }
+
+  .form__row {
+    display: grid;
+    gap: var(--space-md);
+  }
+
+  @media (min-width: 34rem) {
+    .form__row {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  .form__field {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2xs);
+  }
+
+  .form__field label {
+    font-family: var(--font-mono);
+    font-size: var(--step--1);
+    color: var(--text-faint);
+  }
+
+  .form__field input,
+  .form__field textarea {
+    width: 100%;
+    padding: 0.6rem 0.75rem;
+    border: 1px solid var(--hairline-strong);
+    border-radius: var(--radius);
+    background: var(--canvas-deep);
+    color: var(--text);
+    font-size: var(--step-0);
+    transition: border-color var(--transition);
+  }
+
+  .form__field textarea {
+    resize: vertical;
+    min-height: 8rem;
+  }
+
+  .form__field input:focus-visible,
+  .form__field textarea:focus-visible {
+    border-color: var(--accent);
+  }
+
+  /* Invalid styling only after a submit attempt, so typing is not nagged at. */
+  .form:invalid .form__field input:invalid,
+  .form:invalid .form__field textarea:invalid {
+    border-color: var(--hairline-strong);
+  }
+
+  .form__actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-md);
+  }
+
+  .form__status {
+    margin: 0;
+    font-size: var(--step--1);
+    color: var(--text-muted);
+  }
+
+  .form__status--ok {
+    color: var(--accent);
+  }
+
+  .form__status--error {
+    color: #ff8b8b;
+  }
+
+  /* Off-screen rather than display:none, which some bots skip. */
+  .form__trap {
+    position: absolute;
+    left: -9999px;
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+  }
+</style>
