@@ -38,6 +38,16 @@ export const STATS = [
  */
 export const ANALYTICS_TOKEN = 'f153f934b4324ccc8d766371d075494d';
 
+/**
+ * Web3Forms endpoint for the contact form. Static hosting cannot send mail, so
+ * submissions post here and arrive as email. The key is public by design.
+ */
+export const CONTACT_FORM = {
+  endpoint: 'https://api.web3forms.com/submit',
+  accessKey: '969078cd-d933-40a1-9037-3906535e2653',
+  subject: 'New message from theodormihail.github.io',
+} as const;
+
 export const LINKS = {
   email: 'holbantheodormihail@gmail.com',
   linkedin: 'https://www.linkedin.com/in/theodor-mihail-holban',
