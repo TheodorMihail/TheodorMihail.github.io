@@ -33,7 +33,7 @@ const description =
               Play now
             </button>
             {/* Note text is swapped by script on touch devices. */}
-            <p class="poster__note" id="poster-note">Around 35 MB. Keyboard recommended.</p>
+            <p class="poster__note" id="poster-note">Around 40 MB. Keyboard recommended.</p>
           </div>
         </div>
 
@@ -71,6 +71,10 @@ const description =
               <dt>Shoot</dt>
               <dd>Space, hold to keep firing</dd>
             </div>
+            <div>
+              <dt>Pause</dt>
+              <dd>Escape, or the on-screen button</dd>
+            </div>
           </dl>
 
           <p class="controls__platform">Phone and tablet</p>
@@ -82,6 +86,10 @@ const description =
             <div>
               <dt>Shoot</dt>
               <dd>On-screen button, hold to keep firing</dd>
+            </div>
+            <div>
+              <dt>Pause</dt>
+              <dd>On-screen button</dd>
             </div>
           </dl>
         </div>
@@ -163,7 +171,7 @@ const description =
     /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
 
   if (isTouch) {
-    posterNote.textContent = 'Around 35 MB. Playable on touch, best on desktop.';
+    posterNote.textContent = 'Around 40 MB. Playable on touch, best on desktop.';
   }
 
   playButton.addEventListener('click', () => {
