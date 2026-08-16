@@ -4,8 +4,13 @@
     <type fullname="SpaceInvaders.Project.ItemTooltipComponent" preserve="all" />
     <type fullname="SpaceInvaders.Project.SoundButtonComponent" preserve="all" />
     <type fullname="SpaceInvaders.Project.VolumeSettingsComponent" preserve="all" />
-    <type fullname="SpaceInvaders.Scenes.Game.BossSpaceshipBehaviourComponent" preserve="all" />
+    <type fullname="SpaceInvaders.Scenes.Game.AimedAttackComponent" preserve="all" />
+    <type fullname="SpaceInvaders.Scenes.Game.AmmoUIComponent" preserve="all" />
+    <type fullname="SpaceInvaders.Scenes.Game.Boss1SpaceshipBehaviourComponent" preserve="all" />
+    <type fullname="SpaceInvaders.Scenes.Game.Boss2SpaceshipBehaviourComponent" preserve="all" />
+    <type fullname="SpaceInvaders.Scenes.Game.BounceShipMovementComponent" preserve="all" />
     <type fullname="SpaceInvaders.Scenes.Game.CollisionDetectionComponent" preserve="all" />
+    <type fullname="SpaceInvaders.Scenes.Game.CritIndicatorUIComponent" preserve="all" />
     <type fullname="SpaceInvaders.Scenes.Game.EnemySpaceshipBehaviourComponent" preserve="all" />
     <type fullname="SpaceInvaders.Scenes.Game.EnemySpaceshipConfigSO" preserve="all" />
     <type fullname="SpaceInvaders.Scenes.Game.GameAnnouncerHUDView" preserve="all" />
@@ -15,12 +20,22 @@
     <type fullname="SpaceInvaders.Scenes.Game.GameStartView" preserve="all" />
     <type fullname="SpaceInvaders.Scenes.Game.HealthBarUIComponent" preserve="all" />
     <type fullname="SpaceInvaders.Scenes.Game.LevelFinishedView" preserve="all" />
+    <type fullname="SpaceInvaders.Scenes.Game.LevelUIComponent" preserve="all" />
+    <type fullname="SpaceInvaders.Scenes.Game.LootCounterUIComponent" preserve="all" />
     <type fullname="SpaceInvaders.Scenes.Game.MobileControlsHUDView" preserve="all" />
+    <type fullname="SpaceInvaders.Scenes.Game.PlayerShipMovementComponent" preserve="all" />
     <type fullname="SpaceInvaders.Scenes.Game.PlayerSpaceshipBehaviourComponent" preserve="all" />
     <type fullname="SpaceInvaders.Scenes.Game.PlayerSpaceshipConfigSO" preserve="all" />
-    <type fullname="SpaceInvaders.Scenes.Game.PowerupIndicatorComponent" preserve="all" />
+    <type fullname="SpaceInvaders.Scenes.Game.PowerupIndicatorUIComponent" preserve="all" />
     <type fullname="SpaceInvaders.Scenes.Game.ProjectileBehaviourComponent" preserve="all" />
+    <type fullname="SpaceInvaders.Scenes.Game.ScoreUIComponent" preserve="all" />
+    <type fullname="SpaceInvaders.Scenes.Game.ShipFlameComponent" preserve="all" />
+    <type fullname="SpaceInvaders.Scenes.Game.ShipHitboxComponent" preserve="all" />
+    <type fullname="SpaceInvaders.Scenes.Game.ShipWeaponComponent" preserve="all" />
+    <type fullname="SpaceInvaders.Scenes.Game.SpreadAttackComponent" preserve="all" />
+    <type fullname="SpaceInvaders.Scenes.Game.StraightAttackComponent" preserve="all" />
     <type fullname="SpaceInvaders.Scenes.Game.VFXBehaviourComponent" preserve="all" />
+    <type fullname="SpaceInvaders.Scenes.Game.WaveUIComponent" preserve="all" />
     <type fullname="SpaceInvaders.Scenes.MainMenu.InventoryView" preserve="all" />
     <type fullname="SpaceInvaders.Scenes.MainMenu.LevelButtonComponent" preserve="all" />
     <type fullname="SpaceInvaders.Scenes.MainMenu.LevelSelectionView" preserve="all" />
@@ -31,6 +46,7 @@
     <type fullname="SpaceInvaders.Scenes.Preload.BootView" preserve="all" />
     <type fullname="SpaceInvaders.Scenes.Preload.SplashView" preserve="all" />
     <type fullname="SpaceInvaders.Scenes.Game.ShipBaseStats" preserve="nothing" serialized="true" />
+    <type fullname="SpaceInvaders.Scenes.MainMenu.LevelSelectionView/LevelTypeIconDTO" preserve="nothing" serialized="true" />
   </assembly>
   <assembly fullname="Unity.Addressables, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null" preserve="all">
     <type fullname="UnityEngine.AddressableAssets.Addressables" preserve="all" />
@@ -57,16 +73,19 @@
     <type fullname="TMPro.TMP_FontWeightPair" preserve="nothing" serialized="true" />
     <type fullname="TMPro.VertexGradient" preserve="nothing" serialized="true" />
   </assembly>
+  <assembly fullname="UnityEngine.AnimationModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+    <type fullname="UnityEngine.AnimationClip" preserve="all" />
+    <type fullname="UnityEngine.Animator" preserve="all" />
+    <type fullname="UnityEngine.RuntimeAnimatorController" preserve="all" />
+  </assembly>
   <assembly fullname="UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
     <type fullname="UnityEngine.GameObject" preserve="all" />
     <type fullname="UnityEngine.Material" preserve="all" />
-    <type fullname="UnityEngine.Mesh" preserve="all" />
-    <type fullname="UnityEngine.MeshFilter" preserve="all" />
-    <type fullname="UnityEngine.MeshRenderer" preserve="all" />
     <type fullname="UnityEngine.Object" preserve="all" />
     <type fullname="UnityEngine.RectTransform" preserve="all" />
     <type fullname="UnityEngine.Shader" preserve="all" />
     <type fullname="UnityEngine.Sprite" preserve="all" />
+    <type fullname="UnityEngine.SpriteRenderer" preserve="all" />
     <type fullname="UnityEngine.Texture2D" preserve="all" />
     <type fullname="UnityEngine.Transform" preserve="all" />
     <type fullname="UnityEngine.Events.PersistentCallGroup" preserve="nothing" serialized="true" />
@@ -77,8 +96,7 @@
     <type fullname="UnityEngine.ParticleSystemRenderer" preserve="all" />
   </assembly>
   <assembly fullname="UnityEngine.PhysicsModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
-    <type fullname="UnityEngine.CapsuleCollider" preserve="all" />
-    <type fullname="UnityEngine.MeshCollider" preserve="all" />
+    <type fullname="UnityEngine.BoxCollider" preserve="all" />
     <type fullname="UnityEngine.Rigidbody" preserve="all" />
   </assembly>
   <assembly fullname="UnityEngine.TextRenderingModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
