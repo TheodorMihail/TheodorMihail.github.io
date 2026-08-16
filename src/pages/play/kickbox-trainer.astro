@@ -1,0 +1,422 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+/** Everything under public/, so paths are absolute from the site root. */
+const BUILD = '/play/kickbox-trainer';
+const title = 'Kickbox Trainer';
+const description =
+  'A bag timer that calls out combinations. Unlisted preview build.';
+---
+
+<BaseLayout title={title} description={description} noindex>
+  <section class="section">
+    <div class="container">
+      <p class="play__flag">Unlisted preview</p>
+      <h1 class="play__title">Kickbox Trainer</h1>
+      <p class="play__lede">
+        A round timer that replaces a pad holder. It runs the rounds and calls the combinations out
+        loud, so bag work stops being the same two favourites on repeat.
+      </p>
+
+      <div class="play__stage" id="stage">
+        <canvas id="unity-canvas" width="960" height="540" tabindex="-1"></canvas>
+
+        <div class="poster" id="poster">
+          <div class="poster__overlay">
+            <button class="button button--primary poster__button" id="play-button" type="button">
+              Start
+            </button>
+            <p class="poster__note" id="poster-note">
+              Around 16 MB. Turn the sound on, the combinations are spoken.
+            </p>
+          </div>
+        </div>
+
+        <div class="loading" id="loading" hidden>
+          <p class="loading__label" id="loading-label">Loading 0%</p>
+          <div class="loading__track">
+            <div class="loading__bar" id="loading-bar"></div>
+          </div>
+        </div>
+
+        <div class="failed" id="failed" hidden>
+          <p class="failed__title">The build failed to load.</p>
+          <p class="failed__note" id="failed-note"></p>
+        </div>
+      </div>
+
+      {/* Only rendered into on ?debug=1, for diagnosing devices with no attachable console. */}
+      <pre class="debug" id="debug" hidden></pre>
+
+      <div class="play__bar">
+        <button class="button" id="fullscreen-button" type="button" hidden>Fullscreen</button>
+      </div>
+
+      <div class="play__cols">
+        <div>
+          <h2 class="play__h2">How it works</h2>
+          <dl class="controls">
+            <div>
+              <dt>Pick</dt>
+              <dd>Choose a session, from a quick three rounds to a full twelve</dd>
+            </div>
+            <div>
+              <dt>Listen</dt>
+              <dd>Each strike is called on the beat. Throw on the word, do not wait for the end</dd>
+            </div>
+            <div>
+              <dt>Slip</dt>
+              <dd>A spoken "slip" is a break in the combination, a beat to move your head</dd>
+            </div>
+            <div>
+              <dt>Pause</dt>
+              <dd>Holds the round where it is. Stop ends it and shows what you did</dd>
+            </div>
+          </dl>
+        </div>
+
+        <div>
+          <h2 class="play__h2">Notes</h2>
+          <ul class="notes">
+            <li>Sound is the whole point, so it needs a device you can hear across a room</li>
+            <li>Every combination is hand written rather than generated, so they read like a coach calling them</li>
+            <li>The screen is kept awake for the length of a session where the browser allows it</li>
+            <li>The voice is a placeholder, generated rather than recorded</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+{/* Inline by necessity: define:vars cannot be bundled, and the loader is a global. */}
+<script is:inline define:vars={{ BUILD }}>
+  const stage = document.getElementById('stage');
+  const poster = document.getElementById('poster');
+  const playButton = document.getElementById('play-button');
+  const loading = document.getElementById('loading');
+  const loadingBar = document.getElementById('loading-bar');
+  const loadingLabel = document.getElementById('loading-label');
+  const fullscreenButton = document.getElementById('fullscreen-button');
+  const failed = document.getElementById('failed');
+  const failedNote = document.getElementById('failed-note');
+  const canvas = document.getElementById('unity-canvas');
+  const debugPanel = document.getElementById('debug');
+
+  /*
+   * ?debug=1 mirrors errors onto the page. Phones have no attachable console,
+   * so without this a failure on device is invisible.
+   */
+  const debugOn = new URLSearchParams(location.search).get('debug') === '1';
+
+  function debugLog(label, text) {
+    if (!debugOn) {
+      return;
+    }
+    debugPanel.hidden = false;
+    debugPanel.textContent += `[${label}] ${text}\n`;
+  }
+
+  if (debugOn) {
+    debugLog('device', `${navigator.userAgent}`);
+    debugLog('screen', `${window.innerWidth}x${window.innerHeight} dpr=${window.devicePixelRatio}`);
+
+    window.addEventListener('error', (event) => {
+      debugLog('error', `${event.message} @ ${event.filename}:${event.lineno}`);
+    });
+    window.addEventListener('unhandledrejection', (event) => {
+      debugLog('rejection', String(event.reason));
+    });
+  }
+
+  function showFailure(message) {
+    loading.hidden = true;
+    failed.hidden = false;
+    failedNote.textContent = message;
+  }
+
+  /*
+   * This click is also the gesture browsers require before any audio may play.
+   * Nothing in the app makes a sound before the session is started, so the
+   * audio context is always unlocked by the time it needs to be.
+   */
+  playButton.addEventListener('click', () => {
+    poster.hidden = true;
+    loading.hidden = false;
+    stage.classList.add('is-loading');
+
+    const script = document.createElement('script');
+    script.src = `${BUILD}/Build/WebGL.loader.js`;
+
+    script.onerror = () => {
+      showFailure('The Unity loader could not be fetched. Try a reload.');
+    };
+
+    script.onload = () => {
+      createUnityInstance(
+        canvas,
+        {
+          arguments: [],
+          dataUrl: `${BUILD}/Build/WebGL.data.unityweb`,
+          frameworkUrl: `${BUILD}/Build/WebGL.framework.js.unityweb`,
+          codeUrl: `${BUILD}/Build/WebGL.wasm.unityweb`,
+          streamingAssetsUrl: `${BUILD}/StreamingAssets`,
+          companyName: 'Theodor Mihail Holban',
+          productName: 'Kickbox Trainer',
+          productVersion: '0.1.0',
+          /* Unity routes engine-level warnings and errors here rather than to console. */
+          showBanner: (message, type) => {
+            debugLog(`unity-${type || 'info'}`, message);
+          },
+        },
+        (progress) => {
+          const percent = Math.round(progress * 100);
+          loadingBar.style.width = `${percent}%`;
+          loadingLabel.textContent = `Loading ${percent}%`;
+        }
+      )
+        .then((unityInstance) => {
+          loading.hidden = true;
+          stage.classList.remove('is-loading');
+          stage.classList.add('is-running');
+          fullscreenButton.hidden = false;
+          fullscreenButton.addEventListener('click', () => {
+            unityInstance.SetFullscreen(1);
+          });
+        })
+        .catch((message) => {
+          showFailure(String(message));
+        });
+    };
+
+    document.body.appendChild(script);
+  });
+</script>
+
+<style>
+  .play__flag {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+
+  .play__title {
+    margin-top: var(--space-xs);
+    font-size: var(--step-3);
+  }
+
+  .play__lede {
+    max-width: 44rem;
+    margin-top: var(--space-sm);
+    color: var(--text-muted);
+  }
+
+  /* Fixed 16:9 box, matching the build's 960x540, so nothing reflows on load. */
+  .play__stage {
+    margin-top: var(--space-lg);
+    position: relative;
+    aspect-ratio: 960 / 540;
+    max-width: 960px;
+    margin-inline: auto;
+    border: 1px solid var(--hairline);
+    border-radius: var(--radius-lg);
+    background: var(--canvas-deep);
+    overflow: hidden;
+  }
+
+  #unity-canvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+    /* Revealed once the instance is running, so the blank canvas never shows. */
+    opacity: 0;
+    transition: opacity 240ms var(--ease);
+  }
+
+  .play__stage.is-running #unity-canvas {
+    opacity: 1;
+  }
+
+  .poster {
+    position: absolute;
+    inset: 0;
+  }
+
+  .poster[hidden] {
+    display: none;
+  }
+
+  .poster__overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-sm);
+    background: var(--canvas-deep);
+  }
+
+  .poster__button {
+    font-size: var(--step-0);
+    padding: 0.85rem 2rem;
+  }
+
+  .poster__note {
+    max-width: 24rem;
+    padding-inline: var(--space-md);
+    font-family: var(--font-mono);
+    font-size: var(--step--1);
+    text-align: center;
+    color: var(--text-muted);
+  }
+
+  .loading,
+  .failed {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-sm);
+    padding: var(--space-lg);
+    text-align: center;
+  }
+
+  .loading[hidden],
+  .failed[hidden] {
+    display: none;
+  }
+
+  .loading__label {
+    font-family: var(--font-mono);
+    font-size: var(--step--1);
+    color: var(--text-muted);
+  }
+
+  .loading__track {
+    width: min(20rem, 70%);
+    height: 4px;
+    border-radius: 2px;
+    background: var(--hairline-strong);
+    overflow: hidden;
+  }
+
+  .loading__bar {
+    width: 0%;
+    height: 100%;
+    background: var(--accent);
+    transition: width 160ms linear;
+  }
+
+  .failed__title {
+    font-family: var(--font-display);
+    font-size: var(--step-1);
+  }
+
+  .failed__note {
+    font-family: var(--font-mono);
+    font-size: var(--step--1);
+    color: var(--text-faint);
+    overflow-wrap: anywhere;
+  }
+
+  .debug {
+    max-width: 960px;
+    margin: var(--space-md) auto 0;
+    padding: var(--space-sm);
+    border: 1px solid var(--hairline-strong);
+    border-radius: var(--radius);
+    background: var(--canvas-deep);
+    color: var(--text-muted);
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    line-height: 1.5;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+    max-height: 20rem;
+    overflow-y: auto;
+  }
+
+  .debug[hidden] {
+    display: none;
+  }
+
+  .play__bar {
+    display: flex;
+    justify-content: center;
+    margin-top: var(--space-md);
+    min-height: 1px;
+  }
+
+  .play__cols {
+    display: grid;
+    gap: var(--space-xl);
+    margin-top: var(--space-xl);
+  }
+
+  @media (min-width: 48rem) {
+    .play__cols {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  .play__h2 {
+    font-family: var(--font-mono);
+    font-size: var(--step-0);
+    font-weight: 500;
+  }
+
+  .controls {
+    margin-top: var(--space-md);
+  }
+
+  .controls > div {
+    display: flex;
+    gap: var(--space-md);
+    padding-block: var(--space-xs);
+    border-bottom: 1px solid var(--hairline);
+  }
+
+  .controls dt {
+    flex: 0 0 5rem;
+    font-family: var(--font-mono);
+    font-size: var(--step--1);
+    color: var(--text-faint);
+  }
+
+  .controls dd {
+    margin: 0;
+    font-size: var(--step--1);
+  }
+
+  .notes {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+    margin-top: var(--space-md);
+    padding: 0;
+    list-style: none;
+  }
+
+  .notes li {
+    position: relative;
+    padding-left: 1.15rem;
+    font-size: var(--step--1);
+    color: var(--text-muted);
+  }
+
+  .notes li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.72em;
+    width: 5px;
+    height: 5px;
+    border-radius: 1px;
+    background: var(--accent);
+  }
+</style>
