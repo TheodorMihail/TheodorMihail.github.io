@@ -9,6 +9,7 @@ tags:
   - Loot & Equipment
   - Talent Tree
   - Power-ups
+  - Ammo & Reload
   - Levels Progression
   - Boss Fights
 tech:
@@ -52,7 +53,9 @@ versioned UPM package, so framework code stays separate from game code.
   - Managers are split by scope, project-wide ones persisting across scenes and scene-scoped ones
     bound to their own state machine
   - Managers delegate to services where responsibilities need distributing
-  - UI is decoupled through MVC
+  - Ships are assembled from interchangeable components covering movement, weapon, attack pattern
+    and behaviour, so a new enemy is a different combination rather than a new class
+  - UI is decoupled through MVC, with each HUD element its own self-contained component
 - **Data**
   - ScriptableObjects configure almost every in-game entity
   - Progression and settings persist through the framework's persistence manager
@@ -71,7 +74,8 @@ versioned UPM package, so framework code stays separate from game code.
   - Are permanent stat upgrades bought with currency
   - Authored per level as flat or percentage bonuses
 - **Equipment**
-  - Rarity-tiered loot with randomly rolled affixes
+  - Rarity-tiered loot with randomly rolled affixes, covering offence, survivability and weapon
+    handling such as ammo capacity and reload speed
   - Equipped to one of several dedicated equipment slots
 - **Loot**
   - Resolves as a single weighted roll per kill, so a kill can never grant more than one reward
@@ -84,6 +88,15 @@ stacked maluses cannot zero out or invert a stat.
 - **Waves**
   - Are built from a set of procedural formation templates
   - Are formed of different enemy types, each with their own behaviour and stats
+  - Wave progress within a level is tracked on the HUD
+- **Shooting**
+  - Attack patterns are separate components behind a common weapon interface, so a ship's firing
+    style is composed rather than branched on
+  - Damage carries its source, keeping the projectile and damage systems independent of who fired
+  - Hits can roll critical, surfaced through its own HUD indicator
+- **Ammo**
+  - Weapons hold a magazine and reload when it empties, so sustained fire has a cost
+  - Capacity and reload speed are stats, so talents and affixes can improve them
 - **Boss fights**
   - Are flagged as their own wave type and announced explicitly on the HUD
   - Boss health is broadcast to the HUD rather than read from the boss
