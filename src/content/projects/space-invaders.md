@@ -9,6 +9,7 @@ tags:
   - Loot & Equipment
   - Talent Tree
   - Power-ups
+  - Hazards
   - Ammo & Reload
   - Levels Progression
   - Boss Fights
@@ -79,6 +80,7 @@ versioned UPM package, so framework code stays separate from game code.
   - Equipped to one of several dedicated equipment slots
 - **Loot**
   - Resolves as a single weighted roll per kill, so a kill can never grant more than one reward
+  - Unwanted items sell back for currency at a per-rarity rate
 
 Talents, equipment and powerups all combine flat and percentage bonuses, with a guaranteed floor so
 stacked maluses cannot zero out or invert a stat.
@@ -87,8 +89,13 @@ stacked maluses cannot zero out or invert a stat.
 
 - **Waves**
   - Are built from a set of procedural formation templates
-  - Are formed of different enemy types, each with their own behaviour and stats
+  - Are formed of different enemy types, each with their own behaviour and stats, including ones
+    that break apart into smaller ships when destroyed
   - Wave progress within a level is tracked on the HUD
+- **Hazards**
+  - Obstacles cross the play area alongside the waves and damage the ship on contact
+  - Authored per wave, so every level sets its own mix and frequency
+  - Some can be shot down for a guaranteed reward, others can only be avoided
 - **Shooting**
   - Attack patterns are separate components behind a common weapon interface, so a ship's firing
     style is composed rather than branched on
@@ -101,6 +108,7 @@ stacked maluses cannot zero out or invert a stat.
   - Are flagged as their own wave type and announced explicitly on the HUD
   - Boss health is broadcast to the HUD rather than read from the boss
   - Bosses switch between several shooting behaviours
+  - Bosses call in reinforcements as they lose health, so the fight changes shape as it goes
 - **Powerups**
   - Are timed or instant pickups applied as temporary bonuses
   - While active, they have dedicated indicators and timers on the HUD
@@ -109,6 +117,7 @@ stacked maluses cannot zero out or invert a stat.
 
 - **Level Generator** editor window for authoring level configs, with a formation-template
   generator and a custom inspector exposing each level's seed
+- **Animation tools** for turning a sliced sprite sheet into looping clips and their controllers
 - Custom spaceship inspector displaying live stats during play
 - Shortcuts for creating config assets in the selected folder
 - Debug progression shortcuts, gated to the Editor and development builds
