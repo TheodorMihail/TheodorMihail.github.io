@@ -54,9 +54,13 @@ versioned UPM package, so framework code stays separate from game code.
   - Managers are split by scope, project-wide ones persisting across scenes and scene-scoped ones
     bound to their own state machine
   - Managers delegate to services where responsibilities need distributing
+  - Those services are bound in subcontainers owned by the manager that uses them rather than in
+    the scene-wide container, so a collaborator is never visible to systems with no business
+    using it
   - Ships are assembled from interchangeable components covering movement, weapon, attack pattern
     and behaviour, so a new enemy is a different combination rather than a new class
-  - UI is decoupled through MVC, with each HUD element its own self-contained component
+  - UI is decoupled through MVC, with each HUD element its own self-contained component, and
+    screens resize across aspect ratios through dedicated responsive layout components
 - **Data**
   - ScriptableObjects configure almost every in-game entity
   - Progression and settings persist through the framework's persistence manager
@@ -101,6 +105,9 @@ stacked maluses cannot zero out or invert a stat.
     style is composed rather than branched on
   - Damage carries its source, keeping the projectile and damage systems independent of who fired
   - Hits can roll critical, surfaced through its own HUD indicator
+- **Impact feedback**
+  - Hits flash the struck ship and shake the camera
+  - Applied through a dedicated service, so entities never reach for the camera or each other
 - **Ammo**
   - Weapons hold a magazine and reload when it empties, so sustained fire has a cost
   - Capacity and reload speed are stats, so talents and affixes can improve them
