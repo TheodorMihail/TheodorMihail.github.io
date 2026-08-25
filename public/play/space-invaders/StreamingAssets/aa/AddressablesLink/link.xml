@@ -1,7 +1,11 @@
 <linker>
   <assembly fullname="SpaceInvaders.Core, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+    <type fullname="SpaceInvaders.Project.CurrencyUIComponent" preserve="all" />
+    <type fullname="SpaceInvaders.Project.ItemsContainerUIComponent" preserve="all" />
     <type fullname="SpaceInvaders.Project.ItemSlotComponent" preserve="all" />
     <type fullname="SpaceInvaders.Project.ItemTooltipComponent" preserve="all" />
+    <type fullname="SpaceInvaders.Project.ResponsiveGridComponent" preserve="all" />
+    <type fullname="SpaceInvaders.Project.ResponsiveLayoutGroupComponent" preserve="all" />
     <type fullname="SpaceInvaders.Project.SoundButtonComponent" preserve="all" />
     <type fullname="SpaceInvaders.Project.VolumeSettingsComponent" preserve="all" />
     <type fullname="SpaceInvaders.Scenes.Game.AimedAttackComponent" preserve="all" />
@@ -18,6 +22,7 @@
     <type fullname="SpaceInvaders.Scenes.Game.GameplayHUDView" preserve="all" />
     <type fullname="SpaceInvaders.Scenes.Game.GameStartView" preserve="all" />
     <type fullname="SpaceInvaders.Scenes.Game.HealthBarUIComponent" preserve="all" />
+    <type fullname="SpaceInvaders.Scenes.Game.HitFlashComponent" preserve="all" />
     <type fullname="SpaceInvaders.Scenes.Game.LevelFinishedView" preserve="all" />
     <type fullname="SpaceInvaders.Scenes.Game.LevelUIComponent" preserve="all" />
     <type fullname="SpaceInvaders.Scenes.Game.LootCounterUIComponent" preserve="all" />
@@ -44,6 +49,7 @@
     <type fullname="SpaceInvaders.Scenes.Preload.BootView" preserve="all" />
     <type fullname="SpaceInvaders.Scenes.Preload.SplashView" preserve="all" />
     <type fullname="SpaceInvaders.Scenes.Game.EnemySpawnDTO" preserve="nothing" serialized="true" />
+    <type fullname="SpaceInvaders.Project.ResponsiveLayoutGroupComponent/ChildAspect" preserve="nothing" serialized="true" />
     <type fullname="SpaceInvaders.Scenes.MainMenu.LevelSelectionView/LevelTypeIconDTO" preserve="nothing" serialized="true" />
   </assembly>
   <assembly fullname="Unity.Addressables, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null" preserve="all">
@@ -97,6 +103,7 @@
     <type fullname="UnityEngine.Font" preserve="all" />
   </assembly>
   <assembly fullname="UnityEngine.UI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+    <type fullname="UnityEngine.UI.AspectRatioFitter" preserve="all" />
     <type fullname="UnityEngine.UI.Button" preserve="all" />
     <type fullname="UnityEngine.UI.CanvasScaler" preserve="all" />
     <type fullname="UnityEngine.UI.ContentSizeFitter" preserve="all" />

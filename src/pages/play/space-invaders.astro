@@ -33,7 +33,7 @@ const description =
               Play now
             </button>
             {/* Note text is swapped by script on touch devices. */}
-            <p class="poster__note" id="poster-note">Around 40 MB. Keyboard recommended.</p>
+            <p class="poster__note" id="poster-note">Around 37 MB. Keyboard recommended.</p>
           </div>
         </div>
 
@@ -171,7 +171,7 @@ const description =
     /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
 
   if (isTouch) {
-    posterNote.textContent = 'Around 40 MB. Playable on touch, best on desktop.';
+    posterNote.textContent = 'Around 37 MB. Playable on touch, best on desktop.';
   }
 
   playButton.addEventListener('click', () => {
