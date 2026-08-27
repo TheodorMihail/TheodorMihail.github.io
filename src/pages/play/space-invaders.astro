@@ -2,9 +2,11 @@
 import { Image } from 'astro:assets';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import cover from '../../assets/projects/space-invaders/gameplay.png';
+import { PLAY_BUILD, formatBuildDate } from '../../data/playBuild';
 
 /** Everything under public/, so paths are absolute from the site root. */
 const BUILD = '/play/space-invaders';
+const buildDate = formatBuildDate(PLAY_BUILD.updated);
 const title = 'Play Space Invaders';
 const description =
   'Play Space Invaders in the browser. A Unity arcade shooter with rogue-like progression and RPG systems.';
@@ -55,6 +57,9 @@ const description =
 
       <div class="play__bar">
         <button class="button" id="fullscreen-button" type="button" hidden>Fullscreen</button>
+        <p class="play__stamp">
+          Build v{PLAY_BUILD.version} · Updated <time datetime={PLAY_BUILD.updated}>{buildDate}</time>
+        </p>
       </div>
 
       <div class="play__cols">
@@ -108,7 +113,7 @@ const description =
 </BaseLayout>
 
 {/* Inline by necessity: define:vars cannot be bundled, and the loader is a global. */}
-<script is:inline define:vars={{ BUILD }}>
+<script is:inline define:vars={{ BUILD, PLAY_BUILD }}>
   const stage = document.getElementById('stage');
   const poster = document.getElementById('poster');
   const playButton = document.getElementById('play-button');
@@ -197,7 +202,7 @@ const description =
           streamingAssetsUrl: `${BUILD}/StreamingAssets`,
           companyName: 'Theodor Mihail Holban',
           productName: 'Space Invaders',
-          productVersion: '0.1.0',
+          productVersion: PLAY_BUILD.version,
           /* Unity routes engine-level warnings and errors here rather than to console. */
           showBanner: (message, type) => {
             debugLog(`unity-${type || 'info'}`, message);
@@ -390,9 +395,18 @@ const description =
 
   .play__bar {
     display: flex;
+    flex-wrap: wrap;
+    align-items: center;
     justify-content: center;
+    gap: var(--space-md);
     margin-top: var(--space-md);
     min-height: 1px;
+  }
+
+  .play__stamp {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    color: var(--text-faint);
   }
 
   .play__cols {
