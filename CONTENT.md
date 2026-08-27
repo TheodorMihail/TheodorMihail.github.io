@@ -136,6 +136,18 @@ any palette change automatically. `base-architecture.md` is the working example.
 gameplay mechanics for a game, systems provided for a library. `tech` renders only in the detail
 page header and says **how it is built**. With no `tags`, the card falls back to `tech`.
 
+### Refreshing the playable build
+
+1. Replace `public/play/space-invaders/` wholesale (delete `Build/` and `StreamingAssets/` first,
+   rather than copying over them, so renamed Addressables bundles do not accumulate).
+2. Update **both** fields in `src/data/playBuild.ts`: `version` to match `bundleVersion` in the
+   game's ProjectSettings, and `updated` to today in `YYYY-MM-DD`.
+3. Check the download size quoted on the poster in `src/pages/play/space-invaders.astro` still
+   matches.
+
+The version and date render under the game as "Build v0.1.0 · Updated 27 August 2026", and the
+version is also passed to the Unity loader, so it is defined in one place only.
+
 ### The playable build slot
 
 Until `playUrl` is set, the detail page shows a dashed "Playable build" placeholder where the game

@@ -16,6 +16,7 @@
     <type fullname="SpaceInvaders.Scenes.Game.CollisionDetectionComponent" preserve="all" />
     <type fullname="SpaceInvaders.Scenes.Game.CritIndicatorUIComponent" preserve="all" />
     <type fullname="SpaceInvaders.Scenes.Game.EnemySpaceshipBehaviourComponent" preserve="all" />
+    <type fullname="SpaceInvaders.Scenes.Game.FireButtonUIComponent" preserve="all" />
     <type fullname="SpaceInvaders.Scenes.Game.GameAnnouncerHUDView" preserve="all" />
     <type fullname="SpaceInvaders.Scenes.Game.GameOverView" preserve="all" />
     <type fullname="SpaceInvaders.Scenes.Game.GamePausedView" preserve="all" />
@@ -23,10 +24,11 @@
     <type fullname="SpaceInvaders.Scenes.Game.GameStartView" preserve="all" />
     <type fullname="SpaceInvaders.Scenes.Game.HealthBarUIComponent" preserve="all" />
     <type fullname="SpaceInvaders.Scenes.Game.HitFlashComponent" preserve="all" />
-    <type fullname="SpaceInvaders.Scenes.Game.LevelFinishedView" preserve="all" />
+    <type fullname="SpaceInvaders.Scenes.Game.JoystickUIComponent" preserve="all" />
     <type fullname="SpaceInvaders.Scenes.Game.LevelUIComponent" preserve="all" />
     <type fullname="SpaceInvaders.Scenes.Game.LootCounterUIComponent" preserve="all" />
     <type fullname="SpaceInvaders.Scenes.Game.MobileControlsHUDView" preserve="all" />
+    <type fullname="SpaceInvaders.Scenes.Game.PlayAreaFitterUIComponent" preserve="all" />
     <type fullname="SpaceInvaders.Scenes.Game.PlayerShipMovementComponent" preserve="all" />
     <type fullname="SpaceInvaders.Scenes.Game.PlayerSpaceshipBehaviourComponent" preserve="all" />
     <type fullname="SpaceInvaders.Scenes.Game.PowerupIndicatorUIComponent" preserve="all" />
@@ -38,6 +40,7 @@
     <type fullname="SpaceInvaders.Scenes.Game.SplittingEnemySpaceshipBehaviourComponent" preserve="all" />
     <type fullname="SpaceInvaders.Scenes.Game.SpreadAttackComponent" preserve="all" />
     <type fullname="SpaceInvaders.Scenes.Game.StraightAttackComponent" preserve="all" />
+    <type fullname="SpaceInvaders.Scenes.Game.VictoryScreenView" preserve="all" />
     <type fullname="SpaceInvaders.Scenes.Game.WaveUIComponent" preserve="all" />
     <type fullname="SpaceInvaders.Scenes.MainMenu.InventoryView" preserve="all" />
     <type fullname="SpaceInvaders.Scenes.MainMenu.LevelButtonComponent" preserve="all" />
@@ -54,11 +57,6 @@
   </assembly>
   <assembly fullname="Unity.Addressables, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null" preserve="all">
     <type fullname="UnityEngine.AddressableAssets.Addressables" preserve="all" />
-  </assembly>
-  <assembly fullname="Unity.InputSystem, Version=1.14.2.0, Culture=neutral, PublicKeyToken=null">
-    <type fullname="UnityEngine.InputSystem.OnScreen.OnScreenButton" preserve="all" />
-    <type fullname="UnityEngine.InputSystem.OnScreen.OnScreenStick" preserve="all" />
-    <type fullname="UnityEngine.InputSystem.InputAction" preserve="nothing" serialized="true" />
   </assembly>
   <assembly fullname="Unity.ResourceManager, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null" preserve="all">
     <type fullname="UnityEngine.ResourceManagement.ResourceProviders.AssetBundleProvider" preserve="all" />
